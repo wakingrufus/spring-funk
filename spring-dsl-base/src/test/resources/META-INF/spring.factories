@@ -1,0 +1,4 @@
+# enable dsls for test application, each dsl also needs to be registered by the library that declares them
+org.springframework.context.ApplicationContextInitializer=\
+com.github.wakingrufus.springdsl.TestApplication,\
+com.github.wakingrufus.springdsl.base.TestDslInitializer
