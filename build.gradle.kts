@@ -7,5 +7,5 @@ tasks.wrapper {
 }
  
 subprojects {
-    group = "com.github.wakingrufus"
+    group = "com.github.wakingrufus.springdsl"
 }

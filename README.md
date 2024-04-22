@@ -4,7 +4,7 @@ This project is an attempt to build on the concepts pioneered by Sébastien Dele
 
 ### What is Spring-Fu?
 
-Spring Fu is a declarative way of configuring spring boot applications. Instead of using XML, or AOP (annotations), it uses Kotlin DSL builder patterns to deliver a developer experience akin to Micronaut or Ktor. There are 3 main advantages to this approach:
+Spring Fu is a declarative way of configuring spring boot applications. Instead of using XML, or AOP (annotations), it uses Kotlin DSL builder patterns to deliver a developer experience akin to Micronaut or [Ktor](https://ktor.io/). There are 3 main advantages to this approach:
 
 1) Performance: Because it does not use reflection, it has a much faster start time than an application using "AutoConfigure".
 2) GraalVM compatibility:  Because it does not use reflection,it can run out-of-the-box on GraalVM (which gives even more startup performance gains).
@@ -28,6 +28,34 @@ Spring DSL will work with AutoConfigured Spring boot applications, but if your a
 
 
 ## Getting Started
+
+Starting from a standard Spring Boot Application, add the following dependency to your project:
+
+```kotlin
+dependencies {
+    implementation("com.github.wakingrufus.springdsl:spring-dsl-base")
+}
+```
+
+Create a `src/main/resources/META-INF/spring.factories` file within your Spring Boot Application Project. Add an entry for your main Application class:
+
+```
+org.springframework.context.ApplicationContextInitializer=\
+com.your.org.YourApplication
+```
+
+In your application class, implement the `SpringDslApplication` interface and the dsl method.
+
+Example:
+```kotlin
+@SpringBootConfiguration
+open class TestKotlinApplication : SpringDslApplication {
+    override fun dsl(): SpringDslContainer.() -> Unit = {
+    }
+}
+```
+
+Within this method, you will have access to the DSL API
 
 ## Built-in DSLs
 
