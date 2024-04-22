@@ -60,8 +60,65 @@ Within this method, you will have access to the DSL API
 ## Built-in DSLs
 
 ### Beans DSL
-### Router DSL
+The beans DSL gives access to the built-in Spring BeanDefinitionDsl.
+
+### WebMvc
+This DSL allows you to enable and configure WebMvc applications.
+
+#### enableWebMvc
+This DSL allows you to enable webmvc. This is alternative to the `@EnableWebMvc` autoconfiguration annotation.
+If you do use the annotation, do not use this part of the webmvc DSL, but you may still use the other parts of the webmvc DSL to configure webmvc.
+```kotlin
+@SpringBootConfiguration
+open class TestKotlinApplication : SpringDslApplication {
+    override fun dsl(): SpringDslContainer.() -> Unit = {
+        webmvc {
+            enableWebMvc {
+                jetty()
+            }
+        }
+    }
+}
+```
+
+#### Router DSL
 
 ### Runtime Configuration DSL
+
+The Runtime Configuration DSL allows you to declare immutable `@ConfigurationProperties` classes which can
+still receive runtime updates.
+
+Declare an immutable configuration properties class:
+
+```java
+@Value
+@ConstructorBinding
+@AllArgsConstructor
+@ConfigurationProperties(prefix = "prefix")
+public class ConfigProps {
+    @Nonnull
+    String figKey;
+}
+```
+
+Register it in the DSL:
+
+```kotlin
+@SpringBootConfiguration
+open class TestKotlinApplication : SpringDslApplication {
+    override fun dsl(): SpringDslContainer.() -> Unit = {
+        runtimeConfig {
+            registerConfigClass<ConfigProps>()
+        }
+    }
+}
+```
+
+Inject it as a `RuntimeConfig` in order to access it:
+
+```java
+@Autowired RuntimeConfig<ConfigProps> config;
+```
+
 
 ## Creating Custom DSLs

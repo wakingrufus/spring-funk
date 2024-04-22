@@ -8,6 +8,7 @@ include(":spring-dsl-core")
 include(":spring-dsl-base")
 include(":spring-dsl-test")
 include(":spring-dsl-runtimeconfig")
+include(":spring-dsl-webmvc")
 
 dependencyResolutionManagement {
     versionCatalogs {
@@ -16,10 +17,17 @@ dependencyResolutionManagement {
             version("boot", "3.2.4")
             version("cloud", "4.1.2")
             library("context", "org.springframework", "spring-context").versionRef("spring")
-            library("cloud.context", "org.springframework.cloud", "spring-cloud-context").versionRef("cloud")
+            library("webmvc", "org.springframework", "spring-webmvc").versionRef("spring")
+            library("cloud.context", "org.springframework.cloud", "spring-cloud-context")
+                .versionRef("cloud")
             library("test", "org.springframework", "spring-test").versionRef("spring")
             library("boot", "org.springframework.boot", "spring-boot").versionRef("boot")
-            library("boot.test", "org.springframework.boot", "spring-boot-starter-test").versionRef("boot")
+            library("boot.test", "org.springframework.boot", "spring-boot-starter-test")
+                .versionRef("boot")
+            library("boot.jetty", "org.springframework.boot", "spring-boot-starter-jetty")
+                .versionRef("boot")
+            library("boot.autoconfigure", "org.springframework.boot", "spring-boot-autoconfigure")
+                .versionRef("boot")
         }
         create("libs") {
             library("assertj", "org.assertj", "assertj-core").version("3.16.1")
