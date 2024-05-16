@@ -21,6 +21,7 @@ import org.springframework.context.support.GenericApplicationContext
 import org.springframework.context.support.registerBean
 import org.springframework.http.converter.HttpMessageConverter
 import org.springframework.http.converter.StringHttpMessageConverter
+import org.springframework.web.context.support.ServletContextAwareProcessor
 import org.springframework.web.filter.RequestContextFilter
 import org.springframework.web.servlet.function.RouterFunction
 import org.springframework.web.servlet.function.ServerResponse
@@ -38,6 +39,7 @@ class WebmvcInitializer : ApplicationContextInitializer<GenericApplicationContex
 
         context.getDsl<WebmvcDsl>()?.run {
             enableWebmvcDsl?.run {
+               // context.addBeanFactoryPostProcessor(ServletContextAwareProcessor())
                 context.registerBean<WebMvcProperties> { webMvcProperties }
                 servletWebServerFactoryAutoConfiguration(context, serverProperties)
                 dispatcherServletAutoConfiguration(context, webMvcProperties)

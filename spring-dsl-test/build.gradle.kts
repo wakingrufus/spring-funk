@@ -13,7 +13,10 @@ dependencies {
     implementation(project(":spring-dsl-base"))
     implementation(project(":spring-dsl-core"))
     implementation(spring.context)
+    compileOnly(spring.web)
     implementation(spring.boot)
+    implementation(spring.boot.test)
+    compileOnly("jakarta.servlet:jakarta.servlet-api:6.0.0")
     implementation(spring.test)
 }
 

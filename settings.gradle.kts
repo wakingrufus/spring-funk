@@ -9,6 +9,7 @@ include(":spring-dsl-base")
 include(":spring-dsl-test")
 include(":spring-dsl-runtimeconfig")
 include(":spring-dsl-webmvc")
+include(":test-application")
 
 dependencyResolutionManagement {
     versionCatalogs {
@@ -17,6 +18,7 @@ dependencyResolutionManagement {
             version("boot", "3.2.4")
             version("cloud", "4.1.2")
             library("context", "org.springframework", "spring-context").versionRef("spring")
+            library("web", "org.springframework", "spring-web").versionRef("spring")
             library("webmvc", "org.springframework", "spring-webmvc").versionRef("spring")
             library("cloud.context", "org.springframework.cloud", "spring-cloud-context")
                 .versionRef("cloud")
