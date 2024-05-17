@@ -10,8 +10,8 @@ repositories {
 
 dependencies {
     api(project(":spring-dsl-core"))
-    implementation(spring.context)
-    implementation(spring.boot)
+    api(spring.context)
+    api(spring.boot)
     implementation(libs.slf4j)
 
     testImplementation(project(":spring-dsl-test"))

@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForEntity
 import org.springframework.context.ApplicationContext
-import org.springframework.context.ApplicationContextInitializer
 import java.net.URI
 
 @SpringBootTest(

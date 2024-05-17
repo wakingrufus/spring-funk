@@ -16,7 +16,7 @@ dependencies {
     implementation(libs.slf4j)
     implementation(libs.oshai)
     implementation(spring.boot.autoconfigure)
-    compileOnly("jakarta.servlet:jakarta.servlet-api:6.0.0")
+    implementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
     compileOnly("com.fasterxml.jackson.core:jackson-databind:2.17.1")
 
     testImplementation(project(":spring-dsl-test"))
@@ -42,11 +42,22 @@ testing {
                 implementation(libs.assertj)
             }
         }
+        create<JvmTestSuite>("aopTest") {
+            useJUnitJupiter()
+            dependencies {
+                implementation(project())
+                implementation(project(":spring-dsl-test"))
+                implementation(spring.boot.jetty)
+                implementation(spring.boot.test)
+                implementation(libs.oshai)
+                implementation(libs.assertj)
+            }
+        }
     }
 }
 
 tasks.named("check") {
-    dependsOn(testing.suites.named("dslTest"))
+    dependsOn(testing.suites.named("dslTest"), testing.suites.named("aopTest"))
 }
 
 java {
