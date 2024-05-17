@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Introduction
+nav_order: 4.5
+has_children: false
 ---
 
 This project is an attempt to build on the concepts pioneered by Sébastien Deleuze in [spring-fu](https://github.com/spring-projects-experimental/spring-fu), but with is a slightly different focus.
