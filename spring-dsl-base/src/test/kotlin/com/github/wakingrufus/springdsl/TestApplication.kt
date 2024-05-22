@@ -6,8 +6,7 @@ import com.github.wakingrufus.springdsl.beans.beans
 import com.github.wakingrufus.springdsl.core.SpringDslContainer
 import org.springframework.boot.SpringBootConfiguration
 
-@SpringBootConfiguration
-open class TestApplication : SpringDslApplication {
+class TestApplication : SpringDslApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
         testDsl {
             stringBean("stringbean", "1")

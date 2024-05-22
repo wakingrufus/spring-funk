@@ -24,9 +24,19 @@ class AopIntegrationTest {
     lateinit var context: ApplicationContext
 
     @Test
-    fun test() {
+    fun `test beans`() {
+        context.beanDefinitionNames.forEach { log.info { it } }
+    }
+
+    @Test
+    fun `test controller`() {
         val response = client.getForEntity<String>(URI.create("/controller"))
         assertThat(response.statusCode.value()).isEqualTo(200)
-        context.beanDefinitionNames.forEach { log.info { it } }
+    }
+
+    @Test
+    fun `test dsl route`() {
+        val response = client.getForEntity<String>(URI.create("/dsl"))
+        assertThat(response.statusCode.value()).isEqualTo(200)
     }
 }
