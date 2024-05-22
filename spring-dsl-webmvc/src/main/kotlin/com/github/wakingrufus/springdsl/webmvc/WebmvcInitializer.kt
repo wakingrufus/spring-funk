@@ -1,6 +1,5 @@
 package com.github.wakingrufus.springdsl.webmvc
 
-import com.fasterxml.jackson.databind.Module
 import com.github.wakingrufus.springdsl.base.getDsl
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.boot.autoconfigure.jackson.JacksonProperties
@@ -21,7 +20,6 @@ import org.springframework.context.support.GenericApplicationContext
 import org.springframework.context.support.registerBean
 import org.springframework.http.converter.HttpMessageConverter
 import org.springframework.http.converter.StringHttpMessageConverter
-import org.springframework.web.context.support.ServletContextAwareProcessor
 import org.springframework.web.filter.RequestContextFilter
 import org.springframework.web.servlet.function.RouterFunction
 import org.springframework.web.servlet.function.ServerResponse
@@ -39,7 +37,7 @@ class WebmvcInitializer : ApplicationContextInitializer<GenericApplicationContex
 
         context.getDsl<WebmvcDsl>()?.run {
             enableWebmvcDsl?.run {
-               // context.addBeanFactoryPostProcessor(ServletContextAwareProcessor())
+                // context.addBeanFactoryPostProcessor(ServletContextAwareProcessor())
                 context.registerBean<WebMvcProperties> { webMvcProperties }
                 servletWebServerFactoryAutoConfiguration(context, serverProperties)
                 dispatcherServletAutoConfiguration(context, webMvcProperties)
@@ -56,19 +54,11 @@ class WebmvcInitializer : ApplicationContextInitializer<GenericApplicationContex
                         Bindable.ofInstance(this)
                     )
                         .orElseGet { JacksonProperties() }
-                    standardJacksonObjectMapperBuilderCustomizer(
-                        context,
-                        jacksonProps,
-                        context.getBeanProvider(Module::class.java)
-                    )
+                    standardJacksonObjectMapperBuilderCustomizer(context, jacksonProps)
                 }
             }
             routerDsl?.run {
                 context.registerBean<RouterFunction<ServerResponse>> { this }
-
-                context.registerBean<HttpMessageConverter<String>>("StringHttpMessageConverter") {
-                    StringHttpMessageConverter()
-                }
             }
         }
     }
