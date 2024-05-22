@@ -25,7 +25,6 @@ In your application class, implement the `SpringDslApplication` interface and th
 
 Example:
 ```kotlin
-@SpringBootConfiguration
 open class TestKotlinApplication : SpringDslApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
     }

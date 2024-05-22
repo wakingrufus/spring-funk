@@ -21,9 +21,12 @@ dependencies {
 
     testImplementation(project(":spring-dsl-test"))
     testImplementation(spring.boot.jetty)
+    testImplementation(spring.boot.tomcat)
+    testImplementation(spring.boot.json)
     testImplementation(spring.boot.test)
     testImplementation(libs.oshai)
     testImplementation(libs.assertj)
+    testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
 }
 
 testing {
@@ -31,17 +34,7 @@ testing {
         named<JvmTestSuite>("test") {
             useJUnitJupiter()
         }
-        create<JvmTestSuite>("dslTest") {
-            useJUnitJupiter()
-            dependencies {
-                implementation(project())
-                implementation(project(":spring-dsl-test"))
-                implementation(spring.boot.jetty)
-                implementation(spring.boot.test)
-                implementation(libs.oshai)
-                implementation(libs.assertj)
-            }
-        }
+        // create a separate test suite for testing AOP app since it is classpath-dependant
         create<JvmTestSuite>("aopTest") {
             useJUnitJupiter()
             dependencies {
@@ -57,7 +50,7 @@ testing {
 }
 
 tasks.named("check") {
-    dependsOn(testing.suites.named("dslTest"), testing.suites.named("aopTest"))
+    dependsOn(testing.suites.named("aopTest"))
 }
 
 java {
