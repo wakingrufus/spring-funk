@@ -33,11 +33,11 @@ The Router DSL exposes the Spring built-in `RouterFunctionDsl`.
 open class TestKotlinApplication : SpringDslApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
         webmvc {
-            router {  
-			    GET("/dsl") {  
-			        ServerResponse.ok().body(Dto("Hello World"))  
-				}  
-			}
+            router {
+                GET("/dsl") {
+                    ServerResponse.ok().body(Dto("Hello World"))
+                }
+            }
         }
     }
 }
@@ -51,10 +51,10 @@ The Converters DSL allows you to set up message converters. There is built-in su
 open class TestKotlinApplication : SpringDslApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
         webmvc {
-			converters {  
-				string()
-			    jackson()  
-			}
+            converters {
+                string()
+                jackson()
+            }
         }
     }
 }

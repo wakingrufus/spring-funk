@@ -8,8 +8,12 @@ parent: Built-in DSLs
 
 # Runtime Configuration Properties DSL
 
-The Runtime Configuration DSL allows you to declare immutable `@ConfigurationProperties` classes which can
-still receive runtime updates.
+This DSL allows you to bind ConfigurationProperties which can receive runtime updates.
+
+## Why?
+Spring Cloud Context supports updating environment properties at runtime via EnvironmentManager. ConfigurationProperties will receive these updates. However, this does not work with immutable ConfigurationProperties classes. However, exposing setters on ConfigurationProperties classes can give the wrong impression to developers that they may call the setter, and that will propagate runtime configuration changes back up to the Environment. This DSL promotes a different approach where ConfigurationPropoerties classes may be immutable, and accessed though a container which is similar to a Supplier interface. 
+
+## Usage
 
 Declare an immutable configuration properties class:
 
@@ -27,8 +31,7 @@ public class ConfigProps {
 Register it in the DSL:
 
 ```kotlin
-@SpringBootConfiguration
-open class TestKotlinApplication : SpringDslApplication {
+class TestKotlinApplication : SpringDslApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
         runtimeConfig {
             registerConfigClass<ConfigProps>()
