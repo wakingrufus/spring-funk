@@ -26,7 +26,7 @@ dependencies {
     testImplementation(spring.boot.test)
     testImplementation(libs.oshai)
     testImplementation(libs.assertj)
-    testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
+    testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.1")
 }
 
 testing {

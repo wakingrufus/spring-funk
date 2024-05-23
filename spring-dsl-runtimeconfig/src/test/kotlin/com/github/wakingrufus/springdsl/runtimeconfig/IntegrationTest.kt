@@ -7,7 +7,6 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.cloud.context.environment.EnvironmentManager
-import org.springframework.context.ApplicationContext
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
@@ -27,9 +26,6 @@ class IntegrationTest {
 
     @Autowired
     lateinit var config: RuntimeConfig<ConfigProps>
-
-    @Autowired
-    lateinit var context: ApplicationContext
 
     @Test
     fun test_runtimeConfigs() {
