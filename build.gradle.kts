@@ -1,8 +1,9 @@
 plugins {
-    kotlin("jvm") version ("1.9.22") apply (false)
+    kotlin("jvm") version ("2.0.0") apply (false)
 }
+
 tasks.wrapper {
-    gradleVersion = "8.6"
+    gradleVersion = "8.7"
     distributionType = Wrapper.DistributionType.BIN
 }
  
