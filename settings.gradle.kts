@@ -10,6 +10,7 @@ include(":spring-dsl-test")
 include(":spring-dsl-runtimeconfig")
 include(":spring-dsl-webmvc")
 include(":test-application")
+include(":spring-dsl-aws")
 
 dependencyResolutionManagement {
     versionCatalogs {
@@ -35,6 +36,18 @@ dependencyResolutionManagement {
             version("slf4j", "2.0.13")
             library("slf4j", "org.slf4j", "slf4j-api").versionRef("slf4j")
             library("oshai", "io.github.oshai", "kotlin-logging-jvm").version("5.1.0")
+        }
+        create("aws") {
+            version("awssdk", "2.25.60")
+            library("netty", "software.amazon.awssdk", "netty-nio-client").versionRef("awssdk")
+            library("s3", "software.amazon.awssdk", "s3").versionRef("awssdk")
+
+        }
+        create("testcontainers") {
+            version("testcontainers", "1.19.3")
+            library("junit5", "org.testcontainers", "junit-jupiter").versionRef("testcontainers")
+            library("core", "org.testcontainers", "testcontainers").versionRef("testcontainers")
+            library("localstack", "org.testcontainers", "localstack").versionRef("testcontainers")
         }
     }
 }

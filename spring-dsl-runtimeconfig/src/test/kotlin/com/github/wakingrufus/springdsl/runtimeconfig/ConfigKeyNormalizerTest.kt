@@ -1,5 +1,6 @@
 package com.github.wakingrufus.springdsl.runtimeconfig
 
+import com.github.wakingrufus.springdsl.util.normalizeConfigKey
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

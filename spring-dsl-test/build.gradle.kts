@@ -17,7 +17,7 @@ dependencies {
     implementation(spring.boot)
     implementation(spring.boot.test)
     compileOnly("jakarta.servlet:jakarta.servlet-api:6.0.0")
-    implementation(spring.test)
+    api(spring.test)
 }
 
 java {

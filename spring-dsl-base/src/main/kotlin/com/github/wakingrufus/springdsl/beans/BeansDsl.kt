@@ -15,6 +15,6 @@ class BeansDsl : SpringDsl {
 }
 
 @SpringDslMarker
-internal fun SpringDslContainer.beans(config: BeanDefinitionDsl.() -> Unit) {
+fun SpringDslContainer.beans(config: BeanDefinitionDsl.() -> Unit) {
     register(BeansDsl().apply { beans(config) })
 }

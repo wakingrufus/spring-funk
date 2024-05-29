@@ -1,5 +1,9 @@
-package com.github.wakingrufus.springdsl.runtimeconfig
+package com.github.wakingrufus.springdsl.util
 
+/**
+ * Spring Boot relaxed binding strictly requires kebab case when binding a configuration properties,
+ * so when those bindings are driven by user-supplied input, this function is useful to normalize that to kebab case prior to binding
+ */
 fun normalizeConfigKey(rawKey: String): String {
     return translateLowerCaseWithSeparator(rawKey.replace("_", "-"), '-')
 }
