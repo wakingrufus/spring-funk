@@ -10,6 +10,7 @@ import io.micrometer.core.instrument.simple.SimpleMeterRegistry
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.getBean
+import org.springframework.beans.factory.getBeanProvider
 import org.testcontainers.containers.localstack.LocalStackContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
@@ -27,6 +28,26 @@ class S3ClientInitializerTest {
             LocalStackContainer(DockerImageName.parse("localstack/localstack:latest"))
                 .withServices(LocalStackContainer.Service.S3)
 
+    }
+
+    @Test
+    fun `test disabled`() {
+        testDslApplication(S3ClientInitializer()) {
+            application {
+                aws {
+                    s3 {
+                        client("default")
+                    }
+                }
+            }
+            environment {
+                setProperty("awssdk.global.enabled", "false")
+            }
+            test {
+                val client: S3AsyncClient? = getBeanProvider<S3AsyncClient>().ifAvailable
+                assertThat(client).isNull()
+            }
+        }
     }
 
     @Test
@@ -56,7 +77,6 @@ class S3ClientInitializerTest {
         }
     }
 
-
     @Test
     fun `test with metrics`() {
         testDslApplication(BeanDslInitializer(), S3ClientInitializer()) {
@@ -74,7 +94,6 @@ class S3ClientInitializerTest {
                 setProperty("awssdk.s3.default.region", "us-west-2") // test env might not have AWS setup
                 setProperty("awssdk.s3.default.accessKeyId", "test") // test env might not have AWS setup
                 setProperty("awssdk.s3.default.secretAccessKey", "test") // test env might not have AWS setup
-                setProperty("awssdk.s3.default.readWriteTimeout", "2s") // localstack can be slow
                 setProperty(
                     "awssdk.global.s3EndpointOverride",
                     localStackContainer.getEndpointOverride(LocalStackContainer.Service.S3).toString()
