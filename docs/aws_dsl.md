@@ -1,7 +1,7 @@
 ---
 layout: default
 title: AWS DSL
-nav_order: 6
+nav_order: 8
 has_children: false
 parent: Built-in DSLs
 ---

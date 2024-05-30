@@ -10,7 +10,7 @@ If you would like to use ConfigurationProperties to configure the behavior of yo
 
 ### Example
 ```kotlin
-class ExampleDsl(){
+class ExampleDsl : SpringDsl {
     var defaults: ExampleConfig = ExampleConfig()
     fun defaults(config: ExampleConfig.() -> Unit){
         defaults.apply(config)

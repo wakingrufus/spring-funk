@@ -10,7 +10,7 @@ This project is an attempt to build on the concepts pioneered by Sébastien Dele
 
 ### What is Spring-Fu?
 
-Spring Fu is a declarative way of configuring spring boot applications. Instead of using XML, or AOP (annotations), it uses Kotlin DSL builder patterns to deliver a developer experience akin to [Ktor](https://ktor.io/). There are 3 main advantages to this approach:
+Spring Fu is a declarative way of configuring spring boot applications. Instead of using XML, or AOP (annotations), it uses [Kotlin Type-safe builder](https://kotlinlang.org/docs/type-safe-builders.html) patterns to deliver a developer experience akin to [Ktor](https://ktor.io/). There are 3 main advantages to this approach:
 
 1. Performance: Because it does not use reflection, it has a much faster start time than an application using AutoConfiguration.
 2. GraalVM compatibility:  Because it does not use reflection,it can run out-of-the-box on GraalVM (which gives even more startup performance gains).

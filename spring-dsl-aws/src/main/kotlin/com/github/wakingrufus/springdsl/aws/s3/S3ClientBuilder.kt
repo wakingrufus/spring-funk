@@ -8,18 +8,18 @@ import software.amazon.awssdk.regions.Region
 import software.amazon.awssdk.services.s3.S3AsyncClient
 import software.amazon.awssdk.services.s3.S3AsyncClientBuilder
 
-internal fun newClientBuilder(
-    clientConfig: S3ClientConfigurationProperties
-): S3AsyncClientBuilder {
+internal fun newClientBuilder(clientConfig: S3ClientConfigurationProperties): S3AsyncClientBuilder {
     val awsBuilder = S3AsyncClient.builder()
     val builder: NettyNioAsyncHttpClient.Builder =
         NettyNioAsyncHttpClient.builder()
             .sslProvider(SslProvider.OPENSSL)
             .maxConcurrency(clientConfig.maxConcurrency)
-            .connectionAcquisitionTimeout(clientConfig.connectionTimeout)
-            .connectionTimeout(clientConfig.connectionTimeout)
-            .readTimeout(clientConfig.readWriteTimeout)
-            .writeTimeout(clientConfig.readWriteTimeout)
+    clientConfig.readWriteTimeout?.also {
+        builder.readTimeout(it).writeTimeout(it)
+    }
+    clientConfig.connectionTimeout?.also {
+        builder.connectionAcquisitionTimeout(it).connectionTimeout(it)
+    }
     awsBuilder.httpClientBuilder(builder)
     clientConfig.region?.also {
         awsBuilder.region(Region.of(it))
