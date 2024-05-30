@@ -38,8 +38,11 @@ fun <T : Any> registerRuntimeConfig(
  * Use from a Kotlin initializer to register a [RuntimeConfig].
  * Applications should not use this, and should use [RuntimeConfigDsl] instead.
  */
-inline fun <reified T : Any> GenericApplicationContext.registerRuntimeConfig(prefix: String? = null) {
-    registerRuntimeConfig(this, T::class.java, prefix)
+inline fun <reified T : Any> GenericApplicationContext.registerRuntimeConfig(
+    prefix: String? = null,
+    defaultInstance: T? = null
+) {
+    registerRuntimeConfig(this, T::class.java, prefix, defaultInstance)
 }
 
 private fun <T : Any> resolveBeanType(): Class<SpringRuntimeConfig<T>> {

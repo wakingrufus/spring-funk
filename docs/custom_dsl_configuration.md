@@ -11,27 +11,26 @@ If you would like to use ConfigurationProperties to configure the behavior of yo
 ### Example
 ```kotlin
 class ExampleDsl : SpringDsl {
-    var defaults: ExampleConfig = ExampleConfig()
+    internal var defaults: ExampleConfig = ExampleConfig()
     fun defaults(config: ExampleConfig.() -> Unit){
         defaults.apply(config)
     }
-}
-
-fun SpringDslContainer.exampleDsl(ExampleDsl.() -> Unit){
-    register(ExampleDsl().apply(config))
 }
 ```
 
 Then, in your initializer, register the ConfigurationProperties using the helper provided by the spring-dsl-runtimeconfig package
 ### Example
 ```kotlin
-applicationContext.registerRuntimeConfig<ExampleConfig>()
+val defaultInstance = applicationContext.getDsl<ExampleDsl>()?.defaults
+applicationContext.registerRuntimeConfig<ExampleConfig>(defaultInstance = defaultInstance)
 ```
 Then use the config in your bean using another helper from spring-dsl-runtimeconfig
 
 ### Example
 ```kotlin
-applicationContext.registerBean<MyBean>{ MyBean(applicationContext.getRuntimeConfig<ExampleConfig>()) }
+applicationContext.registerBean<MyBean>{ 
+    MyBean(applicationContext.getRuntimeConfig<ExampleConfig>()) 
+}
 ```
 
 Following this method, the configuration properties will be consolidated such that properties from the Environment override the code defaults supplied in the DSL.

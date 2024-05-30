@@ -16,6 +16,21 @@ testDslApplication(CustomDsl()) {
 ```
 
 The second argument is a DSL entry point. Within this DSL, you can use `application {}` to use your DSL and other DSLs. `environment {}` allows you to set environment properties. `test {}` allows you to access the resulting `ApplicationContext`. Your assertions should go there.
+### Full Example
+```kotlin
+testDslApplication(CustomDsl()) {
+    application {
+        customDsl {
+        }
+    }
+    environment {
+        setProperty("prefix.property", "value")
+    }
+    test {
+        assertThat(getBean<MyBean>().customProp).isEqualTo("value")
+    }
+}
+```
 
 ### Initializer Dependencies
 
