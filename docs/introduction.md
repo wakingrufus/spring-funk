@@ -6,7 +6,7 @@ has_children: false
 ---
 # Introduction
 
-This project is an attempt to build on the concepts pioneered by Sébastien Deleuze in [spring-fu](https://github.com/spring-projects-experimental/spring-fu), but with is a slightly different focus.
+This project is an attempt to build on the concepts pioneered by Sébastien Deleuze in [spring-fu](https://github.com/spring-projects-experimental/spring-fu), but with a slightly different focus.
 
 ### What is Spring-Fu?
 
