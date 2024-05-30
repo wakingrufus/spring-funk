@@ -7,7 +7,7 @@ parent: Custom DSLs
 
 # Writing a DSL
 
-A Kotlin DSL is really just a [type-safe builder](https://kotlinlang.org/docs/type-safe-builders.html) for a data structure. To extend the Spring DSL framework to add your own DSL, first define you main data class. This class must implement the `SpringDsl` interface. It should be annotated with `@SpringDslMarker`.
+A Kotlin DSL is really just a [type-safe builder](https://kotlinlang.org/docs/type-safe-builders.html) for a data structure. To extend the Spring DSL framework by adding your own DSL, first define your main data class. This class must implement the `SpringDsl` interface. It should be annotated with `@SpringDslMarker`.
 
 ```kotlin
 @SpringDslMarker
