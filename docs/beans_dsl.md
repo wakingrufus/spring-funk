@@ -12,7 +12,7 @@ The beans DSL gives access to the built-in Spring BeanDefinitionDsl.
 Example:
 ```kotlin
 @SpringBootConfiguration
-open class TestKotlinApplication : SpringDslApplication {
+open class TestKotlinApplication : SpringFunkApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
         beans {
             bean<MyBean>{ MyBean(ref()) }

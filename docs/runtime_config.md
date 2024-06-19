@@ -31,7 +31,7 @@ public class ConfigProps {
 Register it in the DSL:
 
 ```kotlin
-class TestKotlinApplication : SpringDslApplication {
+class TestKotlinApplication : SpringFunkApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
         runtimeConfig {
             registerConfigClass<ConfigProps>()

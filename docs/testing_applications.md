@@ -9,7 +9,7 @@ Spring DSL applications can be tested using `@SpringBootTest` just like a normal
 ### Example
 #### Application
 ```kotlin
-class DslApplication : SpringDslApplication {  
+class DslApplication : SpringFunkApplication {  
     override fun dsl(): SpringDslContainer.() -> Unit = {  
         webmvc {  
             enableWebMvc {  

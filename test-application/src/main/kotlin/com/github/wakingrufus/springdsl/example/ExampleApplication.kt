@@ -1,12 +1,12 @@
 package com.github.wakingrufus.springdsl.example
 
-import com.github.wakingrufus.springdsl.base.SpringDslApplication
+import com.github.wakingrufus.springdsl.base.SpringFunkApplication
 import com.github.wakingrufus.springdsl.core.SpringDslContainer
 import com.github.wakingrufus.springdsl.webmvc.webmvc
 import org.springframework.boot.SpringApplication
 import org.springframework.web.servlet.function.ServerResponse
 
-class ExampleApplication :SpringDslApplication {
+class ExampleApplication :SpringFunkApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
       webmvc {
           enableWebMvc {

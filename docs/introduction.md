@@ -22,7 +22,7 @@ The Spring team decided to focus on GraalVM compatibility for Spring Boot 3, and
 
 Some of the concepts from Spring-Fu have made their way into core Spring, such as beansDsl and routerDsl, and they can be optionally used today. But there is not a seamless way to integrate these into an existing application, and most of the rest of Spring-Fu is still not available in Spring Core.
 
-### Goals of Spring DSL
+### Goals of Spring FunK
 
 This project aims to deliver an API for accessing the existing beansDsl and routerDsl for any Spring Boot application.
 
@@ -30,5 +30,6 @@ It will also provide some additional DSLs that don't exist in core Spring. These
 
 Finally, it will also be designed for extension. This should make it ideal for platform engineers who are building internal runtime frameworks on top of Spring Boot, and want to deliver the DX/ergonomics that come with it to their teams as well.
 
-Spring DSL will work with AutoConfigured Spring boot applications, but if your application is not using AOP at all (AutoConfiguration, Component Scanning, Spring annotations), it will also work with these features disabled in Spring, which will allow you to unlock very fast start-up times, similar to Spring-Fu.
+Spring FunK will work with AutoConfigured Spring boot applications, but if your application is not using AOP at all (AutoConfiguration, Component Scanning, Spring annotations), it will also work with these features disabled in Spring, which will allow you to unlock very fast start-up times, similar to Spring-Fu.
 
+See [Getting Started](getting_started.md) to start.

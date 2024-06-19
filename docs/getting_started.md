@@ -21,13 +21,13 @@ org.springframework.context.ApplicationContextInitializer=\
 com.your.org.YourApplication
 ```
 
-In your application class, implement the `SpringDslApplication` interface and the dsl method. Within this method, you will have access to the DSL API.
+In your application class, implement the `SpringFunkApplication` interface and the dsl method. Within this method, you will have access to the DSL API.
 
 ### Autoconfiguration Example
 ```kotlin
 @SpringBootConfiguration  
 @EnableAutoConfiguration
-open class TestKotlinApplication : SpringDslApplication {
+open class TestKotlinApplication : SpringFunkApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
     }
 }
@@ -35,7 +35,7 @@ open class TestKotlinApplication : SpringDslApplication {
 ### Pure DSL Example
 In order to avoid Autoconfiguration, omit the Spring Boot annotations from your application class.
 ```kotlin
-class TestKotlinApplication : SpringDslApplication {
+class TestKotlinApplication : SpringFunkApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
     }
 }

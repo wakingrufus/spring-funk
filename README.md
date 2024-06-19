@@ -1,4 +1,4 @@
-# Spring DSL
+# Spring FunK
 
 A framework for declarative DSL configuration for Spring Boot.
 

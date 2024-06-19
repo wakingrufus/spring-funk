@@ -20,7 +20,7 @@ class MyLogic(val client1: S3AsyncClient, val client2: S3AsyncClient)
 You can set up clients for injection using the DSL:
 ```kotlin
 @SpringBootConfiguration
-open class TestKotlinApplication : SpringDslApplication {
+open class TestKotlinApplication : SpringFunkApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
         aws {
             s3 {

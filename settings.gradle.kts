@@ -2,15 +2,15 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
-rootProject.name = "spring-dsl"
+rootProject.name = "spring-funk"
 
-include(":spring-dsl-core")
-include(":spring-dsl-base")
-include(":spring-dsl-test")
-include(":spring-dsl-runtimeconfig")
-include(":spring-dsl-webmvc")
+include(":spring-funk-core")
+include(":spring-funk-base")
+include(":spring-funk-test")
+include(":spring-funk-runtimeconfig")
+include(":spring-funk-webmvc")
 include(":test-application")
-include(":spring-dsl-aws")
+include(":spring-funk-aws")
 
 dependencyResolutionManagement {
     versionCatalogs {
