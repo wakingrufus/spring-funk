@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.base
+package com.github.wakingrufus.funk.base
 
 import com.github.wakingrufus.funk.core.SpringDslContainer
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent

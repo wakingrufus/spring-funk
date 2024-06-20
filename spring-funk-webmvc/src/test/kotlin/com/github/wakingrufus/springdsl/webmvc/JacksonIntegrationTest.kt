@@ -1,6 +1,6 @@
 package com.github.wakingrufus.springdsl.webmvc
 
-import com.github.wakingrufus.springdsl.base.SpringFunkApplication
+import com.github.wakingrufus.funk.base.SpringFunkApplication
 import com.github.wakingrufus.funk.core.SpringDslContainer
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.assertj.core.api.Assertions.assertThat

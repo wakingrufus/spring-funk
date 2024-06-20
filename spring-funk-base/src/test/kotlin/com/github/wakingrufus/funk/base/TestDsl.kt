@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.base
+package com.github.wakingrufus.funk.base
 
 import com.github.wakingrufus.funk.core.SpringDsl
 import com.github.wakingrufus.funk.core.SpringDslContainer

@@ -1,6 +1,6 @@
 package com.github.wakingrufus.springdsl.test
 
-import com.github.wakingrufus.springdsl.base.SpringFunkApplication
+import com.github.wakingrufus.funk.base.SpringFunkApplication
 import com.github.wakingrufus.funk.core.SpringDslContainer
 import com.github.wakingrufus.funk.core.SpringDslMarker
 import org.springframework.boot.test.mock.web.SpringBootMockServletContext

@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.base
+package com.github.wakingrufus.funk.base
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.context.ApplicationContextInitializer
