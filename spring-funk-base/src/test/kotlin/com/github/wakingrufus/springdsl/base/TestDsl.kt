@@ -1,8 +1,8 @@
 package com.github.wakingrufus.springdsl.base
 
-import com.github.wakingrufus.springdsl.core.SpringDsl
-import com.github.wakingrufus.springdsl.core.SpringDslContainer
-import com.github.wakingrufus.springdsl.core.SpringDslMarker
+import com.github.wakingrufus.funk.core.SpringDsl
+import com.github.wakingrufus.funk.core.SpringDslContainer
+import com.github.wakingrufus.funk.core.SpringDslMarker
 
 /**
  * An example of a DSL written in Kotlin

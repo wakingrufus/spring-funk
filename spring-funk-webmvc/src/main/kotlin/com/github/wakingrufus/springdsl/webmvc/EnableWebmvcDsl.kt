@@ -1,6 +1,6 @@
 package com.github.wakingrufus.springdsl.webmvc
 
-import com.github.wakingrufus.springdsl.core.SpringDslMarker
+import com.github.wakingrufus.funk.core.SpringDslMarker
 
 class EnableWebMvcDsl {
     internal var engine: ServletEngine? = null

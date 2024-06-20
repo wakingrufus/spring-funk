@@ -1,6 +1,6 @@
 package com.github.wakingrufus.springdsl.runtimeconfig
 
-import com.github.wakingrufus.springdsl.util.normalizeConfigKey
+import com.github.wakingrufus.funk.util.normalizeConfigKey
 import org.springframework.beans.factory.ListableBeanFactory
 import org.springframework.beans.factory.getBeansOfType
 import org.springframework.beans.factory.support.RootBeanDefinition

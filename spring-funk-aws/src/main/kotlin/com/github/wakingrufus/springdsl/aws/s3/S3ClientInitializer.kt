@@ -4,7 +4,7 @@ import com.github.wakingrufus.springdsl.aws.AwsDsl
 import com.github.wakingrufus.springdsl.aws.AwsMicrometerMetricPublisher
 import com.github.wakingrufus.springdsl.aws.GlobalAwsConfigurationProperties
 import com.github.wakingrufus.springdsl.base.getDsl
-import com.github.wakingrufus.springdsl.util.normalizeConfigKey
+import com.github.wakingrufus.funk.util.normalizeConfigKey
 import io.micrometer.core.instrument.MeterRegistry
 import org.springframework.beans.factory.getBeanProvider
 import org.springframework.boot.context.properties.bind.Bindable

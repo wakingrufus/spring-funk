@@ -1,7 +1,7 @@
 package com.github.wakingrufus.springdsl.base
 
-import com.github.wakingrufus.springdsl.core.SpringDslContainer
-import com.github.wakingrufus.springdsl.core.SpringDslMarker
+import com.github.wakingrufus.funk.core.SpringDslContainer
+import com.github.wakingrufus.funk.core.SpringDslMarker
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.support.GenericApplicationContext
 import org.springframework.core.Ordered

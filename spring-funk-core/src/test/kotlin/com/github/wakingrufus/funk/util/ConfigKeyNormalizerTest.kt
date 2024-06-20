@@ -1,10 +1,9 @@
-package com.github.wakingrufus.springdsl.runtimeconfig
+package com.github.wakingrufus.funk.util
 
-import com.github.wakingrufus.funk.util.normalizeConfigKey
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class ConfigKeyNormalizerTest {
+class ConfigKeyNormalizerTest {
     @Test
     fun test_kebab() {
         assertThat(normalizeConfigKey("test-kebab"))
