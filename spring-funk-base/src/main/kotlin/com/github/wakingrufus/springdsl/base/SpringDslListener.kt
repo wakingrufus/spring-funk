@@ -1,6 +1,6 @@
 package com.github.wakingrufus.springdsl.base
 
-import com.github.wakingrufus.springdsl.core.SpringDslContainer
+import com.github.wakingrufus.funk.core.SpringDslContainer
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent
 import org.springframework.context.ApplicationListener
 

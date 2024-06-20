@@ -1,8 +1,8 @@
 package com.github.wakingrufus.springdsl.webmvc
 
-import com.github.wakingrufus.springdsl.core.SpringDsl
-import com.github.wakingrufus.springdsl.core.SpringDslContainer
-import com.github.wakingrufus.springdsl.core.SpringDslMarker
+import com.github.wakingrufus.funk.core.SpringDsl
+import com.github.wakingrufus.funk.core.SpringDslContainer
+import com.github.wakingrufus.funk.core.SpringDslMarker
 import org.springframework.web.servlet.function.RouterFunction
 import org.springframework.web.servlet.function.RouterFunctionDsl
 import org.springframework.web.servlet.function.ServerResponse

@@ -1,6 +1,6 @@
 package com.github.wakingrufus.springdsl.aws.s3
 
-import com.github.wakingrufus.springdsl.core.SpringDslMarker
+import com.github.wakingrufus.funk.core.SpringDslMarker
 import software.amazon.awssdk.core.client.config.ClientOverrideConfiguration
 import software.amazon.awssdk.services.s3.S3AsyncClientBuilder
 

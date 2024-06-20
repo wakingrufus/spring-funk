@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.core
+package com.github.wakingrufus.funk.core
 
 /**
  * Each Spring DSL class implements this interface

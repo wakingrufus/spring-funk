@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.core
+package com.github.wakingrufus.funk.core
 
 import java.util.HashMap
 import java.util.function.Consumer

@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.util
+package com.github.wakingrufus.funk.util
 
 /**
  * Spring Boot relaxed binding strictly requires kebab case when binding a configuration properties,
