@@ -1,8 +1,8 @@
-package com.github.wakingrufus.springdsl
+package com.github.wakingrufus.funk
 
-import com.github.wakingrufus.springdsl.base.SpringFunkApplication
-import com.github.wakingrufus.springdsl.base.testDsl
-import com.github.wakingrufus.springdsl.beans.beans
+import com.github.wakingrufus.funk.base.SpringFunkApplication
+import com.github.wakingrufus.funk.base.testDsl
+import com.github.wakingrufus.funk.beans.beans
 import com.github.wakingrufus.funk.core.SpringDslContainer
 
 class TestApplication : SpringFunkApplication {

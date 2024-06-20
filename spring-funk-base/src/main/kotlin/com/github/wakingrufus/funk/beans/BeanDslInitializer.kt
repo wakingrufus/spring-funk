@@ -1,6 +1,6 @@
-package com.github.wakingrufus.springdsl.beans
+package com.github.wakingrufus.funk.beans
 
-import com.github.wakingrufus.springdsl.base.getDsl
+import com.github.wakingrufus.funk.base.getDsl
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.support.GenericApplicationContext
 

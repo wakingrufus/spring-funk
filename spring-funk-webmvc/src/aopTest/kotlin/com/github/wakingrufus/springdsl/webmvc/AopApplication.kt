@@ -1,6 +1,6 @@
 package com.github.wakingrufus.springdsl.webmvc
 
-import com.github.wakingrufus.springdsl.base.SpringFunkApplication
+import com.github.wakingrufus.funk.base.SpringFunkApplication
 import com.github.wakingrufus.funk.core.SpringDslContainer
 import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration

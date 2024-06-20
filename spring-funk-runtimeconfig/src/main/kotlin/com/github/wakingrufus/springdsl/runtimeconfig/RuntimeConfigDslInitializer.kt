@@ -1,6 +1,6 @@
 package com.github.wakingrufus.springdsl.runtimeconfig
 
-import com.github.wakingrufus.springdsl.base.getDsl
+import com.github.wakingrufus.funk.base.getDsl
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.cloud.context.environment.EnvironmentChangeEvent

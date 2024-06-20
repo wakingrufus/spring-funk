@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.base
+package com.github.wakingrufus.funk.base
 
 import com.github.wakingrufus.funk.core.SpringDsl
 import org.springframework.context.support.GenericApplicationContext

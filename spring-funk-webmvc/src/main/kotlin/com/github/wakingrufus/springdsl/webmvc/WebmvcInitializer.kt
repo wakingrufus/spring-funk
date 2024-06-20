@@ -1,6 +1,6 @@
 package com.github.wakingrufus.springdsl.webmvc
 
-import com.github.wakingrufus.springdsl.base.getDsl
+import com.github.wakingrufus.funk.base.getDsl
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.boot.autoconfigure.jackson.JacksonProperties
 import org.springframework.boot.autoconfigure.jackson.standardJacksonObjectMapperBuilderCustomizer
@@ -18,8 +18,6 @@ import org.springframework.boot.web.servlet.server.CookieSameSiteSupplier
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.support.GenericApplicationContext
 import org.springframework.context.support.registerBean
-import org.springframework.http.converter.HttpMessageConverter
-import org.springframework.http.converter.StringHttpMessageConverter
 import org.springframework.web.filter.RequestContextFilter
 import org.springframework.web.servlet.function.RouterFunction
 import org.springframework.web.servlet.function.ServerResponse
