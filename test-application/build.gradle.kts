@@ -3,6 +3,7 @@ plugins {
     id("org.springframework.boot") version ("3.+")
     kotlin("jvm")
     `jvm-test-suite`
+    jacoco
 }
 repositories {
     mavenCentral()

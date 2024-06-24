@@ -2,6 +2,7 @@ plugins {
     id("java-library")
     kotlin("jvm")
     `jvm-test-suite`
+    jacoco
 }
 
 repositories {

@@ -1,2 +1,2 @@
 org.springframework.context.ApplicationContextInitializer=\
-com.github.wakingrufus.springdsl.runtimeconfig.TestApplication
+com.github.wakingrufus.funk.TestApplication

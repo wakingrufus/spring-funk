@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.runtimeconfig
+package com.github.wakingrufus.funk
 
 import com.github.wakingrufus.funk.core.SpringDsl
 import com.github.wakingrufus.funk.core.SpringDslContainer
