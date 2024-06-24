@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.runtimeconfig
+package com.github.wakingrufus.funk
 
 import java.util.function.Supplier
 

@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.runtimeconfig
+package com.github.wakingrufus.funk
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.bind.Bindable

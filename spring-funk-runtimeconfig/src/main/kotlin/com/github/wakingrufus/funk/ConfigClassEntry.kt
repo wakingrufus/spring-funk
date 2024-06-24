@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.runtimeconfig
+package com.github.wakingrufus.funk
 
 data class ConfigClassEntry<T: Any>(
     val clazz: Class<T>,

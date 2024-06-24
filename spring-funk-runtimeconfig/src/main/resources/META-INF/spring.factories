@@ -1,2 +1,2 @@
 org.springframework.context.ApplicationContextInitializer=\
-com.github.wakingrufus.springdsl.runtimeconfig.RuntimeConfigDslInitializer
+com.github.wakingrufus.funk.RuntimeConfigDslInitializer

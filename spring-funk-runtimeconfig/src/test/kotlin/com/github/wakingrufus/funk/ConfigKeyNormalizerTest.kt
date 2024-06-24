@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.runtimeconfig
+package com.github.wakingrufus.funk
 
 import com.github.wakingrufus.funk.util.normalizeConfigKey
 import org.assertj.core.api.Assertions.assertThat

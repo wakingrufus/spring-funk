@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.runtimeconfig
+package com.github.wakingrufus.funk
 
 import com.github.wakingrufus.springdsl.test.testDslApplication
 import io.github.oshai.kotlinlogging.KotlinLogging

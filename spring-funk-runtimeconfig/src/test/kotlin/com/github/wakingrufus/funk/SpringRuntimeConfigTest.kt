@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.runtimeconfig
+package com.github.wakingrufus.funk
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
