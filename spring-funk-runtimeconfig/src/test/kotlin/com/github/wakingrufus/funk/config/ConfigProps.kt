@@ -1,4 +1,4 @@
-package com.github.wakingrufus.funk
+package com.github.wakingrufus.funk.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 

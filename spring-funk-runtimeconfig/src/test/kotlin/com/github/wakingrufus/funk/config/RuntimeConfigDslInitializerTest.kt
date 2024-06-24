@@ -1,4 +1,4 @@
-package com.github.wakingrufus.funk
+package com.github.wakingrufus.funk.config
 
 import com.github.wakingrufus.springdsl.test.testDslApplication
 import io.github.oshai.kotlinlogging.KotlinLogging

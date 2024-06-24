@@ -1,4 +1,4 @@
-package com.github.wakingrufus.funk
+package com.github.wakingrufus.funk.config
 
 import java.util.function.Supplier
 
