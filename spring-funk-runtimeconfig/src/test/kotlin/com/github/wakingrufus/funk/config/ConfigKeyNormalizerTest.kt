@@ -1,4 +1,4 @@
-package com.github.wakingrufus.funk
+package com.github.wakingrufus.funk.config
 
 import com.github.wakingrufus.funk.util.normalizeConfigKey
 import org.assertj.core.api.Assertions.assertThat

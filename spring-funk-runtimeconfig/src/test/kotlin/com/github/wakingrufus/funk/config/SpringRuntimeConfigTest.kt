@@ -1,4 +1,4 @@
-package com.github.wakingrufus.funk
+package com.github.wakingrufus.funk.config
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
