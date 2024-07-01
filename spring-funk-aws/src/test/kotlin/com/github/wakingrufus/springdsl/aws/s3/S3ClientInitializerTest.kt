@@ -1,6 +1,7 @@
 package com.github.wakingrufus.springdsl.aws.s3
 
-import com.github.wakingrufus.springdsl.aws.aws
+import com.github.wakingrufus.funk.aws.aws
+import com.github.wakingrufus.funk.aws.s3.S3ClientInitializer
 import com.github.wakingrufus.funk.beans.BeanDslInitializer
 import com.github.wakingrufus.funk.beans.beans
 import com.github.wakingrufus.springdsl.test.testDslApplication

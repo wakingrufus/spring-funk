@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.aws.s3
+package com.github.wakingrufus.funk.aws.s3
 
 import io.netty.handler.ssl.SslProvider
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials

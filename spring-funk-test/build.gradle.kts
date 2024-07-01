@@ -1,14 +1,7 @@
 plugins {
-    id("java-library")
     kotlin("jvm")
-    `jvm-test-suite`
-    jacoco
+    funk.library
 }
-
-repositories {
-    mavenCentral()
-}
-
 
 dependencies {
     implementation(project(":spring-funk-base"))
@@ -19,10 +12,4 @@ dependencies {
     implementation(spring.boot.test)
     compileOnly("jakarta.servlet:jakarta.servlet-api:6.0.0")
     api(spring.test)
-}
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
-    }
 }

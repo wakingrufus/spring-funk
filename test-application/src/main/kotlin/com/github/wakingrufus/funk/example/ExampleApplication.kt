@@ -8,16 +8,16 @@ import org.springframework.web.servlet.function.ServerResponse
 
 class ExampleApplication : SpringFunkApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
-      webmvc {
-          enableWebMvc {
-              jetty()
-          }
-          router {
-              GET("/dsl") {
-                  ServerResponse.ok().body("Hello World")
-              }
-          }
-      }
+        webmvc {
+            enableWebMvc {
+                jetty()
+            }
+            router {
+                GET("/dsl") {
+                    ServerResponse.ok().body("Hello World")
+                }
+            }
+        }
     }
 }
 

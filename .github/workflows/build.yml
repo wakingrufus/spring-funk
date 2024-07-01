@@ -1,5 +1,11 @@
 name: Run Gradle on PRs
-on: pull_request
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
 jobs:
   gradle:
     runs-on: ubuntu-latest
@@ -10,7 +16,7 @@ jobs:
           java-version: 17
           cache: 'gradle'
           distribution: "temurin"
-      - run: ./gradlew build --no-daemon
+      - run: ./gradlew build testCodeCoverageReport --no-daemon
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
         if: success() || failure() # always run even if the previous step fails
@@ -18,3 +24,34 @@ jobs:
           report_paths: '**/build/test-results/*/TEST-*.xml'
           detailed_summary: true
           include_passed: true
+      # generates coverage-report.md and publishes as checkrun
+      - name: JaCoCo Code Coverage Report
+        id: jacoco_reporter
+        uses: PavanMudigonda/jacoco-reporter@v5.0
+        with:
+          coverage_results_path: build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml
+          coverage_report_name: Coverage
+          coverage_report_title: JaCoCo
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          skip_check_run: false
+          minimum_coverage: 80
+          fail_below_threshold: false
+          publish_only_summary: false
+
+      # Publish Coverage Job Summary  # Optional
+      - name: Add Jacocoo report to workflow run summary
+        run: |
+          echo "| Outcome | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "| --- | --- |" >> $GITHUB_STEP_SUMMARY
+          echo "| Code Coverage % | ${{ steps.jacoco_reporter.outputs.coverage_percentage }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| :heavy_check_mark: Number of Lines Covered | ${{ steps.jacoco_reporter.outputs.covered_lines }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| :x: Number of Lines Missed | ${{ steps.jacoco_reporter.outputs.missed_lines }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Total Number of Lines | ${{ steps.jacoco_reporter.outputs.total_lines }} |" >> $GITHUB_STEP_SUMMARY
+
+      # uploads the coverage-report.md artifact  # Optional
+      - name: Upload Code Coverage Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report-markdown
+          path: "*/coverage-results.md"
+          retention-days: 1

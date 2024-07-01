@@ -1,8 +1,8 @@
-package com.github.wakingrufus.springdsl.aws.s3
+package com.github.wakingrufus.funk.aws.s3
 
-import com.github.wakingrufus.springdsl.aws.AwsDsl
-import com.github.wakingrufus.springdsl.aws.AwsMicrometerMetricPublisher
-import com.github.wakingrufus.springdsl.aws.GlobalAwsConfigurationProperties
+import com.github.wakingrufus.funk.aws.AwsDsl
+import com.github.wakingrufus.funk.aws.AwsMicrometerMetricPublisher
+import com.github.wakingrufus.funk.aws.GlobalAwsConfigurationProperties
 import com.github.wakingrufus.funk.base.getDsl
 import com.github.wakingrufus.funk.util.normalizeConfigKey
 import io.micrometer.core.instrument.MeterRegistry

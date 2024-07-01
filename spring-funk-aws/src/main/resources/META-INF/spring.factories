@@ -1,2 +1,2 @@
 org.springframework.context.ApplicationContextInitializer=\
-com.github.wakingrufus.springdsl.aws.s3.S3ClientInitializer
+com.github.wakingrufus.funk.aws.s3.S3ClientInitializer

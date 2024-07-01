@@ -1,12 +1,6 @@
 plugins {
-    id("java-library")
     kotlin("jvm")
-    `jvm-test-suite`
-    jacoco
-}
-
-repositories {
-    mavenCentral()
+funk.library
 }
 
 dependencies {
@@ -32,9 +26,6 @@ dependencies {
 
 testing {
     suites {
-        named<JvmTestSuite>("test") {
-            useJUnitJupiter()
-        }
         // create a separate test suite for testing AOP app since it is classpath-dependant
         create<JvmTestSuite>("aopTest") {
             useJUnitJupiter()
@@ -52,10 +43,4 @@ testing {
 
 tasks.named("check") {
     dependsOn(testing.suites.named("aopTest"))
-}
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
-    }
 }

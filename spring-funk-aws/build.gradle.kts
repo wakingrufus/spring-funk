@@ -1,12 +1,6 @@
 plugins {
-    id("java-library")
     kotlin("jvm")
-    `jvm-test-suite`
-    jacoco
-}
-
-repositories {
-    mavenCentral()
+    funk.library
 }
 
 dependencies {
@@ -33,9 +27,6 @@ dependencies {
 
 testing {
     suites {
-        named<JvmTestSuite>("test") {
-            useJUnitJupiter()
-        }
         // create a separate test suite for testing when micrometer is not on classpath
         create<JvmTestSuite>("noMicrometer") {
             useJUnitJupiter()
@@ -53,10 +44,4 @@ testing {
 
 tasks.named("check") {
     dependsOn(testing.suites.named("noMicrometer"))
-}
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
-    }
 }
