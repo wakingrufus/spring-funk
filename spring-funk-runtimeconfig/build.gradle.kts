@@ -1,12 +1,6 @@
 plugins {
-    id("java-library")
     kotlin("jvm")
-    `jvm-test-suite`
-    jacoco
-}
-
-repositories {
-    mavenCentral()
+    funk.library
 }
 
 dependencies {
@@ -22,18 +16,4 @@ dependencies {
     testImplementation(spring.boot.test)
     testImplementation(libs.oshai)
     testImplementation(libs.assertj)
-}
-
-testing {
-    suites {
-        named<JvmTestSuite>("test") {
-            useJUnitJupiter()
-        }
-    }
-}
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
-    }
 }

@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.aws.s3
+package com.github.wakingrufus.funk.aws.s3
 
 import com.github.wakingrufus.funk.core.SpringDslMarker
 import software.amazon.awssdk.core.client.config.ClientOverrideConfiguration

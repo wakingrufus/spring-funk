@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.aws
+package com.github.wakingrufus.funk.aws
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.micrometer.core.instrument.MeterRegistry

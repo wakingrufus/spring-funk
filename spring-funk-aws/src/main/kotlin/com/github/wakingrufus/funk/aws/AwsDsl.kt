@@ -1,6 +1,6 @@
-package com.github.wakingrufus.springdsl.aws
+package com.github.wakingrufus.funk.aws
 
-import com.github.wakingrufus.springdsl.aws.s3.S3Dsl
+import com.github.wakingrufus.funk.aws.s3.S3Dsl
 import com.github.wakingrufus.funk.core.SpringDsl
 import com.github.wakingrufus.funk.core.SpringDslContainer
 import com.github.wakingrufus.funk.core.SpringDslMarker

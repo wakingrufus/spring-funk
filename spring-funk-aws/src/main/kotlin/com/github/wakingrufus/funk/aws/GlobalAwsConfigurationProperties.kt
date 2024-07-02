@@ -1,6 +1,6 @@
-package com.github.wakingrufus.springdsl.aws
+package com.github.wakingrufus.funk.aws
 
-import com.github.wakingrufus.springdsl.aws.GlobalAwsConfigurationProperties.Companion.PREFIX
+import com.github.wakingrufus.funk.aws.GlobalAwsConfigurationProperties.Companion.PREFIX
 import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties(PREFIX)
