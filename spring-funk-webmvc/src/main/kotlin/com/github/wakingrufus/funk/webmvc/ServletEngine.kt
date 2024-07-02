@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.webmvc
+package com.github.wakingrufus.funk.webmvc
 
 import org.springframework.boot.autoconfigure.web.ServerProperties
 import org.springframework.context.support.GenericApplicationContext

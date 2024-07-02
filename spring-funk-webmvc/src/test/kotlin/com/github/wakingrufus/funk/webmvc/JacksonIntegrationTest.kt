@@ -1,4 +1,4 @@
-package com.github.wakingrufus.springdsl.webmvc
+package com.github.wakingrufus.funk.webmvc
 
 import com.github.wakingrufus.funk.base.SpringFunkApplication
 import com.github.wakingrufus.funk.core.SpringDslContainer

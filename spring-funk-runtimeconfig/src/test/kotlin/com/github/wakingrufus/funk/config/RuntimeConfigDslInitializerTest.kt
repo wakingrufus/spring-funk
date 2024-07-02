@@ -1,6 +1,6 @@
 package com.github.wakingrufus.funk.config
 
-import com.github.wakingrufus.springdsl.test.testDslApplication
+import com.github.wakingrufus.funk.test.testDslApplication
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

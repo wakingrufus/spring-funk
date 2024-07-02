@@ -1,6 +1,6 @@
-package com.github.wakingrufus.springdsl.webmvc
+package com.github.wakingrufus.funk.webmvc
 
-import com.github.wakingrufus.springdsl.test.testDslApplication
+import com.github.wakingrufus.funk.test.testDslApplication
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.getBeanProvider
