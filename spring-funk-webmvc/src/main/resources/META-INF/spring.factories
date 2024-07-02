@@ -1,2 +1,2 @@
 org.springframework.context.ApplicationContextInitializer=\
-com.github.wakingrufus.springdsl.webmvc.WebmvcInitializer
+com.github.wakingrufus.funk.webmvc.WebmvcInitializer

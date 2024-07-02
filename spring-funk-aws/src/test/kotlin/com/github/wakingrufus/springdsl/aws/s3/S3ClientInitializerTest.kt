@@ -4,7 +4,7 @@ import com.github.wakingrufus.funk.aws.aws
 import com.github.wakingrufus.funk.aws.s3.S3ClientInitializer
 import com.github.wakingrufus.funk.beans.BeanDslInitializer
 import com.github.wakingrufus.funk.beans.beans
-import com.github.wakingrufus.springdsl.test.testDslApplication
+import com.github.wakingrufus.funk.test.testDslApplication
 import io.micrometer.core.instrument.MeterRegistry
 import io.micrometer.core.instrument.Tag
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry

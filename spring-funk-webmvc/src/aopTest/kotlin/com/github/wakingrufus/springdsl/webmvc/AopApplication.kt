@@ -2,6 +2,7 @@ package com.github.wakingrufus.springdsl.webmvc
 
 import com.github.wakingrufus.funk.base.SpringFunkApplication
 import com.github.wakingrufus.funk.core.SpringDslContainer
+import com.github.wakingrufus.funk.webmvc.webmvc
 import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.Bean
