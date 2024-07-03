@@ -75,7 +75,11 @@ jreleaser {
     }
 }
 project.tasks.named("jreleaserFullRelease") {
-    dependsOn(subprojects.map { it.tasks.named("publish") })
+    dependsOn(
+        subprojects
+            .filter { it.name != "test-application" }
+            .map { it.tasks.named("publish") }
+    )
 }
 tasks.create<Delete>("clean") {
     setDelete(layout.buildDirectory)
