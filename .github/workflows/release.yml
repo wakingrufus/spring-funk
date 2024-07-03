@@ -16,7 +16,7 @@ jobs:
           distribution: "temurin"
       - run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
       - name: Gradle release
-        run: ./gradlew jreleaserFullRelease --no-daemon -Pversion=${{ env.VERSION }}
+        run: ./gradlew jreleaserFullRelease --no-daemon --info --stacktrace -Pversion=${{ env.VERSION }}
         env:
           SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
           SONATYPE_PASS: ${{ secrets.SONATYPE_PASS }}

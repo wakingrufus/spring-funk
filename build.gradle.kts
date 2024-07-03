@@ -36,9 +36,9 @@ jreleaser {
     signing {
         active = Active.ALWAYS
         armored = true
-        publicKey.set(System.getenv("PUBLIC_KEY"))
-        secretKey.set(System.getenv("PRIVATE_KEY"))
-        passphrase.set(System.getenv("PASSPHRASE"))
+        publicKey = System.getenv("PUBLIC_KEY")
+        secretKey = System.getenv("PRIVATE_KEY")
+        passphrase = System.getenv("PASSPHRASE")
     }
     release {
         github {
@@ -66,8 +66,8 @@ jreleaser {
                     url = "https://central.sonatype.com/api/v1/publisher"
                     stagingRepository("build/staging-deploy")
                     applyMavenCentralRules = true
-                    username.set(System.getenv("SONATYPE_USER"))
-                    password.set(System.getenv("SONATYPE_PASS"))
+                    username = System.getenv("SONATYPE_USER")
+                    password = System.getenv("SONATYPE_PASS")
                     namespace.set("io.github.wakingrufus")
                 }
             }
