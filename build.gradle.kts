@@ -51,6 +51,9 @@ jreleaser {
             releaseNotes {
                 enabled = true
             }
+            changelog {
+                enabled = false
+            }
             skipTag = true
             sign = true
         }
