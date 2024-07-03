@@ -55,17 +55,17 @@ jreleaser {
                 enabled = false
             }
             skipTag = true
-            sign = true
+            sign = false
         }
     }
     deploy {
         maven {
             mavenCentral {
                 create("sonatype") {
-                    active.set(Active.ALWAYS)
+                    active = Active.ALWAYS
                     url = "https://central.sonatype.com/api/v1/publisher"
                     stagingRepository("build/staging-deploy")
-                    applyMavenCentralRules.set(true)
+                    applyMavenCentralRules = true
                     username.set(System.getenv("SONATYPE_USER"))
                     password.set(System.getenv("SONATYPE_PASS"))
                     namespace.set("io.github.wakingrufus")
