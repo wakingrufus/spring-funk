@@ -34,7 +34,7 @@ reporting {
 
 jreleaser {
     signing {
-        active.set(Active.ALWAYS)
+        active = Active.ALWAYS
         armored = true
         publicKey.set(System.getenv("PUBLIC_KEY"))
         secretKey.set(System.getenv("PRIVATE_KEY"))
@@ -42,8 +42,17 @@ jreleaser {
     }
     release {
         github {
-            token.set(System.getenv("GITHUB_TOKEN"))
-            enabled.set(false)
+            repoOwner = "wakingrufus"
+            host = "github.com"
+            username = "wakingrufus"
+            apiEndpoint = "https://api.github.com"
+            token = System.getenv("GITHUB_TOKEN")
+            enabled = true
+            releaseNotes {
+                enabled = true
+            }
+            skipTag = true
+            sign = true
         }
     }
     deploy {
