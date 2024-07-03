@@ -69,6 +69,8 @@ jreleaser {
                     username = System.getenv("SONATYPE_USER")
                     password = System.getenv("SONATYPE_PASS")
                     namespace.set("io.github.wakingrufus")
+                    retryDelay = 20
+                    maxRetries = 100
                 }
             }
         }
