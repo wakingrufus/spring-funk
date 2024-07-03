@@ -74,7 +74,7 @@ jreleaser {
         }
     }
 }
-project.tasks.named("jreleaserAssemble") {
+project.tasks.named("jreleaserFullRelease") {
     dependsOn(subprojects.map { it.tasks.named("publish") })
 }
 tasks.create<Delete>("clean") {
