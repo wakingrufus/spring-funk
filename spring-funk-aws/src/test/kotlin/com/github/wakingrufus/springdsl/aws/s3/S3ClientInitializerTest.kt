@@ -18,7 +18,7 @@ import org.testcontainers.junit.jupiter.Testcontainers
 import org.testcontainers.utility.DockerImageName
 import software.amazon.awssdk.regions.Region
 import software.amazon.awssdk.services.s3.S3AsyncClient
-import software.amazon.awssdk.services.s3.model.CreateBucketRequest
+import com.github.wakingrufus.springdsl.aws.s3.S3TestHelper.validateClient
 
 @Testcontainers
 class S3ClientInitializerTest {
@@ -72,8 +72,7 @@ class S3ClientInitializerTest {
             }
             test {
                 val client = getBean<S3AsyncClient>()
-                val createResponse = client.createBucket(CreateBucketRequest.builder().bucket("bucket").build()).join()
-                assertThat(createResponse.sdkHttpResponse().isSuccessful).isTrue
+                validateClient(client)
             }
         }
     }
@@ -102,9 +101,7 @@ class S3ClientInitializerTest {
             }
             test {
                 val client = getBean<S3AsyncClient>()
-                val createResponse =
-                    client.createBucket(CreateBucketRequest.builder().bucket("bucket-with-metrics").build()).join()
-                assertThat(createResponse.sdkHttpResponse().isSuccessful).isTrue
+                validateClient(client)
 
                 val meterRegistry = getBean<SimpleMeterRegistry>()
                 assertThat(
@@ -162,9 +159,8 @@ class S3ClientInitializerTest {
                 val meterRegistry = getBean<SimpleMeterRegistry>()
 
                 val client = getBean<S3AsyncClient>("s3-default")
-                val createResponse =
-                    client.createBucket(CreateBucketRequest.builder().bucket("default-bucket").build()).join()
-                assertThat(createResponse.sdkHttpResponse().isSuccessful).isTrue
+                validateClient(client)
+
                 assertThat(
                     meterRegistry.timer(
                         "awssdk",
@@ -178,9 +174,8 @@ class S3ClientInitializerTest {
                 ).isEqualTo(1L)
 
                 val eastClient = getBean<S3AsyncClient>("s3-east")
-                val eastCreateResponse =
-                    eastClient.createBucket(CreateBucketRequest.builder().bucket("east-bucket").build()).join()
-                assertThat(eastCreateResponse.sdkHttpResponse().isSuccessful).isTrue
+                validateClient(eastClient)
+
                 assertThat(
                     meterRegistry.timer(
                         "awssdk",
@@ -195,4 +190,5 @@ class S3ClientInitializerTest {
             }
         }
     }
+
 }

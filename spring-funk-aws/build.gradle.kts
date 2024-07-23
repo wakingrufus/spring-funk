@@ -25,6 +25,7 @@ dependencies {
     testImplementation(testcontainers.junit5)
     testImplementation(testcontainers.localstack)
     testImplementation("io.micrometer:micrometer-core:1.13.0")
+    testImplementation("commons-io:commons-io:2.16.1")
 }
 
 testing {
