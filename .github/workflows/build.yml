@@ -28,6 +28,7 @@ jobs:
       - name: JaCoCo Code Coverage Report
         id: jacoco_reporter
         uses: PavanMudigonda/jacoco-reporter@v5.0
+        if: github.event.pull_request.head.repo.full_name == github.repository
         with:
           coverage_results_path: build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml
           coverage_report_name: Coverage
@@ -40,6 +41,7 @@ jobs:
 
       # Publish Coverage Job Summary  # Optional
       - name: Add Jacocoo report to workflow run summary
+        if: github.event.pull_request.head.repo.full_name == github.repository
         run: |
           echo "| Outcome | Value |" >> $GITHUB_STEP_SUMMARY
           echo "| --- | --- |" >> $GITHUB_STEP_SUMMARY
@@ -50,6 +52,7 @@ jobs:
 
       # uploads the coverage-report.md artifact  # Optional
       - name: Upload Code Coverage Artifacts
+        if: github.event.pull_request.head.repo.full_name == github.repository
         uses: actions/upload-artifact@v4
         with:
           name: code-coverage-report-markdown

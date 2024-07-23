@@ -31,7 +31,7 @@ reporting {
         }
     }
 }
-
+project.description = "A framework for declarative DSL configuration for Spring Boot"
 jreleaser {
     signing {
         active = Active.ALWAYS
