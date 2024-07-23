@@ -5,7 +5,9 @@ plugins {
 
 dependencies {
     api(project(":spring-funk-base"))
-    api(aws.s3)
+    api(aws.s3) {
+        exclude(group = "software.amazon.awssdk", module = "apache-client")
+    }
     implementation(aws.netty)
     implementation(libs.slf4j)
     implementation(libs.oshai)
