@@ -38,7 +38,7 @@ dependencyResolutionManagement {
 
         }
         create("testcontainers") {
-            version("testcontainers", "1.19.3")
+            version("testcontainers", "1.20.0")
             library("junit5", "org.testcontainers", "junit-jupiter").versionRef("testcontainers")
             library("core", "org.testcontainers", "testcontainers").versionRef("testcontainers")
             library("localstack", "org.testcontainers", "localstack").versionRef("testcontainers")
