@@ -8,15 +8,10 @@ dependencies {
     api(aws.s3) {
         exclude(group = "software.amazon.awssdk", module = "apache-client")
     }
-    implementation(aws.netty)
+    implementation(aws.crtClient)
     implementation(libs.slf4j)
     implementation(libs.oshai)
     compileOnly("io.micrometer:micrometer-core:1.13.0")
-    implementation("io.netty:netty-tcnative-boringssl-static:2.0.62.Final")
-    implementation("io.netty:netty-tcnative-boringssl-static:2.0.62.Final:linux-aarch_64")
-    implementation("io.netty:netty-tcnative-boringssl-static:2.0.62.Final:osx-aarch_64")
-    implementation("io.netty:netty-tcnative-boringssl-static:2.0.62.Final:linux-x86_64")
-    implementation("io.netty:netty-tcnative-boringssl-static:2.0.62.Final:osx-x86_64")
 
     testImplementation(project(":spring-funk-test"))
     testImplementation(libs.oshai)
