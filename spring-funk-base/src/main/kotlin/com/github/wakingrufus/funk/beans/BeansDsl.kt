@@ -5,6 +5,7 @@ import com.github.wakingrufus.funk.core.SpringDslContainer
 import com.github.wakingrufus.funk.core.SpringDslMarker
 import org.springframework.context.support.BeanDefinitionDsl
 
+@SpringDslMarker
 class BeansDsl : SpringDsl {
     internal var beansDsl: BeanDefinitionDsl? = null
 

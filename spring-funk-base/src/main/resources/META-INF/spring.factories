@@ -1,2 +1,3 @@
 org.springframework.context.ApplicationContextInitializer=\
-com.github.wakingrufus.funk.beans.BeanDslInitializer
+com.github.wakingrufus.funk.beans.BeanDslInitializer,\
+com.github.wakingrufus.funk.logging.LoggingDslInitializer

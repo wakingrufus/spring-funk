@@ -8,7 +8,11 @@ import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForEntity
 import java.net.URI
 
-@SpringBootTest(classes = [ExampleApplication::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(
+    classes = [ExampleApplication::class],
+    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+    properties = ["logging.level.com.github.wakingrufus.funk=DEBUG"]
+)
 class ExampleApplicationTest {
 
     @Autowired
