@@ -8,7 +8,7 @@ plugins {
 repositories {
     mavenCentral()
 }
-dependencies{
+dependencies {
     implementation(project(":spring-funk-webmvc"))
     implementation(spring.boot.jetty)
     implementation("ch.qos.logback:logback-classic:1.5.6")

@@ -48,6 +48,7 @@ jreleaser {
             apiEndpoint = "https://api.github.com"
             token = System.getenv("GITHUB_TOKEN")
             enabled = true
+            releaseName = "{{tagName}}"
             releaseNotes {
                 enabled = true
             }
