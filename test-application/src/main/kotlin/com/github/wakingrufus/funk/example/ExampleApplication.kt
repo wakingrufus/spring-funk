@@ -20,10 +20,12 @@ class ExampleApplication : SpringFunkApplication {
             enableWebMvc {
                 jetty()
             }
-            router {
-                GET("/dsl") {
-                    log.debug { "handling hello world request" }
-                    ServerResponse.ok().body("Hello World")
+            routes {
+                route {
+                    GET("/dsl") {
+                        log.debug { "handling hello world request" }
+                        ServerResponse.ok().body("Hello World")
+                    }
                 }
             }
         }

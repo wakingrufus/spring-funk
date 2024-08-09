@@ -42,9 +42,11 @@ internal class JacksonFunkApplication : SpringFunkApplication {
             converters {
                 jackson()
             }
-            router {
-                GET("/dsl") {
-                    ServerResponse.ok().body(Dto("Hello World"))
+            routes {
+                route {
+                    GET("/dsl") {
+                        ServerResponse.ok().body(Dto("Hello World"))
+                    }
                 }
             }
         }
