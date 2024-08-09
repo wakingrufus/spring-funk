@@ -28,14 +28,39 @@ open class TestKotlinApplication : SpringFunkApplication {
 ## Router DSL
 The Router DSL exposes the Spring built-in `RouterFunctionDsl`.
 
-### Example
+#### Example
 ```kotlin
 open class TestKotlinApplication : SpringFunkApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
         webmvc {
-            router {
-                GET("/dsl") {
-                    ServerResponse.ok().body(Dto("Hello World"))
+            routes {
+                route {
+                    GET("/dsl") {
+                        ServerResponse.ok().body(Dto("Hello World"))
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+### Routers with Bean Injection
+
+In order to use bean injection in your routers, declare a separate router function.
+Then register this function using `ref()` to inject, similar to the beans DSL.
+
+#### Example
+```kotlin
+fun helloWorldApi(serviceClass: ServiceClass) = router {
+    GET("/hello", serviceClass::get)
+}
+open class TestKotlinApplication : SpringFunkApplication {
+    override fun dsl(): SpringDslContainer.() -> Unit = {
+        webmvc {
+            routes {
+                router {
+                    helloWorldApi(ref())
                 }
             }
         }

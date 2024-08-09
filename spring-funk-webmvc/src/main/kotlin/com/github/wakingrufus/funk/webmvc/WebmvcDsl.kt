@@ -3,13 +3,10 @@ package com.github.wakingrufus.funk.webmvc
 import com.github.wakingrufus.funk.core.SpringDsl
 import com.github.wakingrufus.funk.core.SpringDslContainer
 import com.github.wakingrufus.funk.core.SpringDslMarker
-import org.springframework.web.servlet.function.RouterFunction
-import org.springframework.web.servlet.function.RouterFunctionDsl
-import org.springframework.web.servlet.function.ServerResponse
 
 @SpringDslMarker
 class WebmvcDsl : SpringDsl {
-    internal var routerDsl: RouterFunction<ServerResponse>? = null
+    internal var routes: RoutesDsl? = null
     internal var enableWebmvcDsl: EnableWebMvcDsl? = null
     internal var converterDsl: WebMvcConverterDsl? = null
 
@@ -22,8 +19,8 @@ class WebmvcDsl : SpringDsl {
     }
 
     @SpringDslMarker
-    fun router(config: RouterFunctionDsl.() -> Unit) {
-        routerDsl = org.springframework.web.servlet.function.router(config)
+    fun routes(config: RoutesDsl.() -> Unit) {
+        routes = RoutesDsl().apply(config)
     }
 
     /**
