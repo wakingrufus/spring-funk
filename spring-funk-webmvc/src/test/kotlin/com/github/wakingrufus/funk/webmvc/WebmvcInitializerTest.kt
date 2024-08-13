@@ -22,7 +22,11 @@ class WebmvcInitializerTest {
 
             }
             test {
-                assertThat(getBeanProvider<JettyServletWebServerFactory>().firstOrNull()).isNotNull
+                val factory = getBeanProvider<JettyServletWebServerFactory>().first()
+                assertThat(factory).isNotNull
+                assertThat(factory.compression!!.enabled).isFalse
+                assertThat(factory.http2!!.isEnabled).isFalse
+                assertThat(factory.ssl).isNull()
             }
         }
     }
@@ -41,7 +45,11 @@ class WebmvcInitializerTest {
 
             }
             test {
-                assertThat(getBeanProvider<TomcatServletWebServerFactory>().firstOrNull()).isNotNull
+                val factory = getBeanProvider<TomcatServletWebServerFactory>().first()
+                assertThat(factory).isNotNull
+                assertThat(factory.compression!!.enabled).isFalse
+                assertThat(factory.http2!!.isEnabled).isFalse
+                assertThat(factory.ssl).isNull()
             }
         }
     }
