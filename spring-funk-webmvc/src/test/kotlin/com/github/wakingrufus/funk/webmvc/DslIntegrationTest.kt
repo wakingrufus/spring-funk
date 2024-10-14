@@ -35,6 +35,8 @@ internal class DslIntegrationTest {
     fun test() {
         val response = client.getForEntity<String>(URI.create("/dsl"))
         assertThat(response.statusCode.value()).isEqualTo(200)
+        val response2 = client.getForEntity<String>(URI.create("/dsl2"))
+        assertThat(response2.statusCode.value()).isEqualTo(200)
         context.beanDefinitionNames.forEach { log.info { it } }
     }
 
@@ -51,6 +53,10 @@ internal class FunkApplication : SpringFunkApplication {
             }
 
             routes {
+                router { serviceClass: ServiceClass -> {
+                        GET("/dsl2", serviceClass::get)
+                    }
+                }
                 router {
                     helloWorldApi(ref())
                 }
