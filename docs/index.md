@@ -8,7 +8,7 @@ has_children: false
 
 Spring Fun(ctional)K(otlin) is a framework for declarative DSL configuration for Spring Boot.
 
-View source and report issues on [GitHub](https://github.com/wakingrufus/spring-dsl).
+View source and report issues on [GitHub](https://github.com/wakingrufus/spring-funk).
 
 For a brief conceptual introduction, see the [Introduction](introduction.md).
 

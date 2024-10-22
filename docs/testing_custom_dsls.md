@@ -6,7 +6,7 @@ nav_order: 4
 ---
 # Testing Custom DSLs
 
-Custom DSLs can be used in Test Spring Boot applications and tested via `@SpringBootTest`, but spring-dsl-test provides a test fixture that facilitates faster tests which can share a test class. To use it, use the `testDslApplication` function. This function takes a list of initializers to run. Pass your initializer you want to test in here.
+Custom DSLs can be used in Test Spring Boot applications and tested via `@SpringBootTest`, but spring-funk-test provides a test fixture that facilitates faster tests which can share a test class. To use it, use the `testDslApplication` function. This function takes a list of initializers to run. Pass your initializer you want to test in here.
 
 ### Example
 ```kotlin

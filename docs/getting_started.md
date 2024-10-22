@@ -10,7 +10,7 @@ Starting from a standard Spring Boot Application, add the following dependency t
 
 ```kotlin
 dependencies {
-    implementation("com.github.wakingrufus.springdsl:spring-dsl-base")
+    implementation("io.github.wakingrufus:spring-funk-base:0.3.0")
 }
 ```
 
