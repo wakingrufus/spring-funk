@@ -18,13 +18,13 @@ class ExampleDsl : SpringDsl {
 }
 ```
 
-Then, in your initializer, register the ConfigurationProperties using the helper provided by the spring-dsl-runtimeconfig package
+Then, in your initializer, register the ConfigurationProperties using the helper provided by the spring-funk-runtimeconfig package
 ### Example
 ```kotlin
 val defaultInstance = applicationContext.getDsl<ExampleDsl>()?.defaults
 applicationContext.registerRuntimeConfig<ExampleConfig>(defaultInstance = defaultInstance)
 ```
-Then use the config in your bean using another helper from spring-dsl-runtimeconfig
+Then use the config in your bean using another helper from spring-funk-runtimeconfig
 
 ### Example
 ```kotlin
