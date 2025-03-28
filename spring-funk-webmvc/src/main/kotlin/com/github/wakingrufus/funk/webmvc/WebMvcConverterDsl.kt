@@ -1,5 +1,6 @@
 package com.github.wakingrufus.funk.webmvc
 
+import com.github.wakingrufus.funk.core.SpringDslMarker
 import org.springframework.boot.autoconfigure.jackson.JacksonProperties
 
 class WebMvcConverterDsl {
@@ -9,6 +10,7 @@ class WebMvcConverterDsl {
     /**
      * Enable [org.springframework.http.converter.StringHttpMessageConverter]
      */
+    @SpringDslMarker
     fun string() {
         converters.add(STRING)
     }
@@ -16,6 +18,7 @@ class WebMvcConverterDsl {
     /**
      * Enable [org.springframework.http.converter.ResourceHttpMessageConverter] and [org.springframework.http.converter.ResourceRegionHttpMessageConverter]
      */
+    @SpringDslMarker
     fun resource() {
         converters.add(RESOURCE)
     }
@@ -27,6 +30,7 @@ class WebMvcConverterDsl {
      * Required dependencies can be retrieve using `org.springframework.boot:spring-boot-starter-json`
      * (included by default in `spring-boot-starter-webflux`).
      */
+    @SpringDslMarker
     fun jackson(dsl: JacksonProperties.() -> Unit = {}) {
         converters.add(JACKSON)
         jacksonProperties = JacksonProperties().apply(dsl)
@@ -35,6 +39,7 @@ class WebMvcConverterDsl {
     /**
      * Enable [org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter]
      */
+    @SpringDslMarker
     fun form() {
         converters.add(FORM)
     }
@@ -42,6 +47,7 @@ class WebMvcConverterDsl {
     /**
      * Enable [org.springframework.http.converter.feed.AtomFeedHttpMessageConverter]
      */
+    @SpringDslMarker
     fun atom() {
         converters.add(ATOM)
     }
@@ -49,6 +55,7 @@ class WebMvcConverterDsl {
     /**
      * Enable [org.springframework.http.converter.feed.RssChannelHttpMessageConverter]
      */
+    @SpringDslMarker
     fun rss() {
         converters.add(RSS)
     }
@@ -56,10 +63,12 @@ class WebMvcConverterDsl {
     /**
      * Enable [org.springframework.http.converter.json.KotlinSerializationJsonHttpMessageConverter]
      */
+    @SpringDslMarker
     fun kotlinSerialization() {
         converters.add(KOTLIN)
     }
 
+    @SpringDslMarker
     fun custom(converter: Converter) {
         converters.add(converter)
     }
