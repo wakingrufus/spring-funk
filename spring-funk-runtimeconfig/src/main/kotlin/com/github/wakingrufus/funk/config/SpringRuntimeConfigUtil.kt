@@ -2,6 +2,7 @@ package com.github.wakingrufus.funk.config
 
 import com.github.wakingrufus.funk.util.normalizeConfigKey
 import org.springframework.beans.factory.ListableBeanFactory
+import org.springframework.beans.factory.ObjectProvider
 import org.springframework.beans.factory.getBeansOfType
 import org.springframework.beans.factory.support.RootBeanDefinition
 import org.springframework.context.support.GenericApplicationContext
@@ -57,10 +58,16 @@ internal inline fun <reified T> resolveType(): Class<T> {
  * Use from a java initializer to access a [RuntimeConfig].
  * Applications should not use this, and should inject in the instance instead.
  */
-fun <T : Any> getRuntimeConfig(beanFactory: ListableBeanFactory, configClass: Class<T>, prefix: String? = null): T? {
-    val beans = beanFactory.getBeansOfType<RuntimeConfig<T>>()
+fun <T: Any> getRuntimeConfig(
+    beanFactory: ListableBeanFactory,
+    configClass: Class<T>,
+    prefix: String? = null
+): T? {
     return if (prefix == null) {
-        beans.values.firstOrNull()?.get()
+        val beanProvider : ObjectProvider<RuntimeConfig<T>> = beanFactory.getBeanProvider(
+            ResolvableType.forClassWithGenerics(RuntimeConfig::class.java, configClass)
+        )
+        beanProvider.ifAvailable?.get()
     } else {
         val fullPrefix = configClass.simpleName + "-" + normalizeConfigKey(prefix)
         beanFactory.getBeansOfType<SpringRuntimeConfig<T>>()

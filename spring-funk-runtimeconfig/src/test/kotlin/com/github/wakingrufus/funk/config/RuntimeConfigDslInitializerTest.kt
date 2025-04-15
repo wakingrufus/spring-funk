@@ -18,7 +18,7 @@ class RuntimeConfigDslInitializerTest {
                 }
             }
             environment {
-                setProperty("prefix.figKey", "startup")
+                setProperty("prefix.configKey", "startup")
             }
             test {
                 getBeansOfType(RuntimeConfig::class.java).forEach { t, u ->
@@ -26,7 +26,7 @@ class RuntimeConfigDslInitializerTest {
                 }
                 val configBean = getBean<RuntimeConfig<ConfigProps>>()
                 assertThat(configBean).isNotNull
-                assertThat(configBean.get().figKey).isEqualTo("startup")
+                assertThat(configBean.get().configKey).isEqualTo("startup")
             }
         }
     }

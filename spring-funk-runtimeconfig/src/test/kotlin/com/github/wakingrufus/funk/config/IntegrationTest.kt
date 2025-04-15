@@ -15,7 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
     properties = [
         "version=1.0.1",
         "spring.application.name=TEST",
-        "prefix.figKey=startup"
+        "prefix.config-key=startup"
     ]
 )
 class IntegrationTest {
@@ -29,9 +29,9 @@ class IntegrationTest {
 
     @Test
     fun test_runtimeConfigs() {
-        assertThat(config.get().figKey).isEqualTo("startup")
-        environmentManager.setProperty("prefix.figKey", "new")
+        assertThat(config.get().configKey).isEqualTo("startup")
+        environmentManager.setProperty("prefix.configKey", "new")
         log.info { "new fig set" }
-        assertThat(config.get().figKey).isEqualTo("new")
+        assertThat(config.get().configKey).isEqualTo("new")
     }
 }
