@@ -84,6 +84,6 @@ project.tasks.named("jreleaserFullRelease") {
             .map { it.tasks.named("publish") }
     )
 }
-tasks.create<Delete>("clean") {
+tasks.register<Delete>("clean") {
     setDelete(layout.buildDirectory)
 }

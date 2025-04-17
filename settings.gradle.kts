@@ -11,6 +11,7 @@ include(":spring-funk-runtimeconfig")
 include(":spring-funk-webmvc")
 include(":test-application")
 include(":spring-funk-aws")
+include(":spring-funk-htmx")
 
 dependencyResolutionManagement {
     versionCatalogs {
@@ -30,6 +31,7 @@ dependencyResolutionManagement {
             library("boot.tomcat", "org.springframework.boot", "spring-boot-starter-tomcat").versionRef("boot")
             library("boot.autoconfigure", "org.springframework.boot", "spring-boot-autoconfigure")
                 .versionRef("boot")
+            library("boot.webflux", "org.springframework.boot", "spring-boot-starter-webflux").versionRef("boot")
         }
         create("aws") {
             version("awssdk", "2.25.60")

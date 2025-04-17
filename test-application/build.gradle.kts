@@ -10,11 +10,13 @@ repositories {
 }
 dependencies {
     implementation(project(":spring-funk-webmvc"))
+    implementation(project(":spring-funk-htmx"))
     implementation(spring.boot.jetty)
     implementation("ch.qos.logback:logback-classic:1.5.6")
     implementation(libs.oshai)
 
     testImplementation(spring.boot.test)
+    testImplementation(spring.boot.webflux)
 }
 
 testing {
@@ -29,4 +31,8 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
     }
+}
+
+application {
+    mainClass = "com.github.wakingrufus.funk.example.ExampleApplicationKt"
 }

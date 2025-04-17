@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-funk.library
+    funk.library
 }
 
 dependencies {
@@ -10,7 +10,9 @@ dependencies {
     api(spring.webmvc)
     implementation(libs.slf4j)
     implementation(libs.oshai)
-    implementation(spring.boot.autoconfigure)
+    api(spring.boot.autoconfigure) {
+        because("api because JacksonProperties is exposed via DSL")
+    }
     implementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
     compileOnly("com.fasterxml.jackson.core:jackson-databind:2.17.1")
 
