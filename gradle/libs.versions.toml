@@ -1,7 +1,10 @@
 [versions]
+jackson = "2.18.3"
 slf4j = "2.0.13"
 
 [libraries]
 slf4j = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 assertj = { module = "org.assertj:assertj-core", version = "3.16.1" }
-oshai = {module = "io.github.oshai:kotlin-logging-jvm", version = "5.1.0"}
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-datatype-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
+oshai = { module = "io.github.oshai:kotlin-logging-jvm", version = "5.1.0" }
