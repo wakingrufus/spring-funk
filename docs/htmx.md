@@ -18,15 +18,6 @@ class TestKotlinApplication : SpringFunkApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
         htmx {
             page("/index") {
-                route(HttpVerb.POST, helloWorldUrl, ExampleService::sayHello) {
-                    {
-                        div {
-                            span {
-                                +it.message
-                            }
-                        }
-                    }
-                }
                 initialLoad {
                     form {
                         hxPost(helloWorldUrl) {
@@ -44,6 +35,15 @@ class TestKotlinApplication : SpringFunkApplication {
                             swap(HxSwapType.OuterHtml)
                         }
                         +"Click Me"
+                    }
+                }
+                route(HttpVerb.POST, helloWorldUrl, ExampleService::sayHello) {
+                    {
+                        div {
+                            span {
+                                +it.message
+                            }
+                        }
                     }
                 }
             }
