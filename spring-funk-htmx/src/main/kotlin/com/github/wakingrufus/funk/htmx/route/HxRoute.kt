@@ -11,7 +11,7 @@ interface HxRoute {
     fun registerRoutes(beanFactory: BeanFactory, dsl: RouterFunctionDsl)
 }
 
-fun <CONTROLLER : Any, REQ : Record, RESP : Record> withParam(
+fun <CONTROLLER : Any, REQ : Record, RESP : Any> withParam(
     routerFunction: RouterFunctionDsl.(String, (ServerRequest) -> ServerResponse) -> Unit,
     path: String,
     requestClass: Class<REQ>,
@@ -22,7 +22,7 @@ fun <CONTROLLER : Any, REQ : Record, RESP : Record> withParam(
     return ParamRoute(routerFunction, path, requestClass, controllerClass, binding, renderer)
 }
 
-fun <CONTROLLER : Any, RESP : Record> noParam(
+fun <CONTROLLER : Any, RESP : Any> noParam(
     routerFunction: RouterFunctionDsl.(String, (ServerRequest) -> ServerResponse) -> Unit,
     path: String,
     controllerClass: Class<CONTROLLER>,

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.function.ServerResponse
 import org.springframework.web.servlet.function.contentTypeOrNull
 import org.w3c.dom.Document
 
-class ParamRoute<CONTROLLER : Any, REQ : Record, RESP : Record>(
+class ParamRoute<CONTROLLER : Any, REQ : Record, RESP : Any>(
     val routerFunction: RouterFunctionDsl.(String, (ServerRequest) -> ServerResponse) -> Unit,
     val path: String,
     private val requestClass: Class<REQ>,

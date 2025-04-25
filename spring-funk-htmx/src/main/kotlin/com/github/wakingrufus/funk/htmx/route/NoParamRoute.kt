@@ -11,7 +11,7 @@ import org.springframework.web.servlet.function.ServerResponse
 import org.springframework.web.servlet.function.contentTypeOrNull
 import org.w3c.dom.Document
 
-class NoParamRoute<CONTROLLER : Any, RESP : Record>(
+class NoParamRoute<CONTROLLER : Any, RESP : Any>(
     val routerFunction: RouterFunctionDsl.(String, (ServerRequest) -> ServerResponse) -> Unit,
     val path: String,
     private val controllerClass: Class<CONTROLLER>,

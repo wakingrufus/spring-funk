@@ -39,7 +39,7 @@ class HtmxPage(val path: String) {
      * use when declaring a GET route that takes no parameters
      */
     @SpringDslMarker
-    inline fun <reified CONTROLLER : Any, RESP : Record> get(
+    inline fun <reified CONTROLLER : Any, RESP : Any> get(
         path: String,
         noinline binding: CONTROLLER.() -> RESP,
         noinline renderer: (RESP) -> TagConsumer<Document>.() -> Document
@@ -54,7 +54,7 @@ class HtmxPage(val path: String) {
     }
 
     @SpringDslMarker
-    inline fun <reified CONTROLLER : Any, reified REQ : Record, RESP : Record> route(
+    inline fun <reified CONTROLLER : Any, reified REQ : Record, RESP : Any> route(
         verb: HttpVerb,
         path: String,
         noinline binding: CONTROLLER.(REQ) -> RESP,
