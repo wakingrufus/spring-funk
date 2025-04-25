@@ -1,4 +1,4 @@
-package com.github.wakingrufus.funk.htmx
+package com.github.wakingrufus.funk.htmx.route
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -14,17 +14,16 @@ import org.springframework.web.servlet.function.ServerResponse
 import org.springframework.web.servlet.function.contentTypeOrNull
 import org.w3c.dom.Document
 
-class HxRoute<CONTROLLER : Any, REQ : Record, RESP : Record>(
+class ParamRoute<CONTROLLER : Any, REQ : Record, RESP : Record>(
     val routerFunction: RouterFunctionDsl.(String, (ServerRequest) -> ServerResponse) -> Unit,
     val path: String,
     private val requestClass: Class<REQ>,
     private val controllerClass: Class<CONTROLLER>,
     val binding: CONTROLLER.(REQ) -> RESP,
     val renderer: (RESP) -> TagConsumer<Document>.() -> Document
-) {
-    val log = KotlinLogging.logger {}
-
-    fun registerRoutes(beanFactory: BeanFactory, dsl: RouterFunctionDsl) {
+) : HxRoute {
+    private val log = KotlinLogging.logger {}
+    override fun registerRoutes(beanFactory: BeanFactory, dsl: RouterFunctionDsl) {
         dsl.apply {
             routerFunction(path) { request ->
                 val contentType = request.headers().contentTypeOrNull()
