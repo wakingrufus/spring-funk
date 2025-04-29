@@ -2,6 +2,7 @@ package com.github.wakingrufus.funk.htmx.route
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.wakingrufus.funk.htmx.template.HtmxTemplate
+import com.github.wakingrufus.funk.htmx.template.template
 import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.html.stream.appendHTML
 import org.springframework.beans.factory.BeanFactory
@@ -44,8 +45,7 @@ class ParamRoute<CONTROLLER : Any, REQ : Record, RESP : Any>(
                 } else {
                     ServerResponse.ok().contentType(MediaType.TEXT_HTML)
                         .body(buildString {
-                            appendHTML(false)
-                                .apply { renderer.render(this, resp) }
+                            appendHTML(false).template(renderer, resp)
                         })
                 }
             }

@@ -60,6 +60,21 @@ val myTemplate = htmxTemplate<ResponseDataClass> {
 }
 ```
 
+Templates can be composed.
+
+```kotlin
+val itemTemplate = htmxTemplate<String> {
+    li { +it }
+}
+val listTemplate = htmxTemplate<List<String>> {
+    ul {
+        it.forEach {
+            template(itemTemplate, it)
+        }
+    }
+}
+```
+
 ### Initial Load
 
 You must declare the "landing page" for each page, which is the initial content to show on load. The `initialLoad` function lets you do this, which exposes the HTML DSL to define that view.
@@ -103,10 +118,10 @@ Each interaction which binds to a backend route will need a route declared to ha
 
 Routes are server-side handers for handling HTMX interactions. They consist of 4 main components:
 
-1) HttpVerb: the HTTP verb/method to listen for (eg, GET, POST, etc).
-2) route: the url path
-3) handler: a function reference to call. This method must take a single parameter. The incoming request from HTMX will be deserialized into this parameter, then passed to the function.
-4) renderer: a template for rendering the result of the handler call in HTMX. renderers can be templates, or defined inline.
+1. HttpVerb: the HTTP verb/method to listen for (eg, GET, POST, etc).
+2. route: the url path
+3. handler: a function reference to call. This method must take a single parameter. The incoming request from HTMX will be deserialized into this parameter, then passed to the function.
+4. renderer: a template for rendering the result of the handler call in HTMX. renderers can be templates, or defined inline.
 
 #### Example route (inline)
 ```kotlin
