@@ -32,10 +32,10 @@ class ParamRoute<CONTROLLER : Any, REQ : Record, RESP : Any>(
                     beanFactory.getBean<ObjectMapper>()
                         .convertValue(request.params().toSingleValueMap(), requestClass)
                 } else {
-                    log.warn { "unsupported content type $contentType" }
-                    null
+                    beanFactory.getBean<ObjectMapper>()
+                        .convertValue(request.pathVariables(), requestClass)
                 }
-                val resp = beanFactory.getBean(controllerClass).binding(req!!)
+                val resp = beanFactory.getBean(controllerClass).binding(req)
 
                 val acceptedType = request.headers().accept()
                 if (MediaType.APPLICATION_JSON.isCompatibleWith(contentType) && acceptedType.any {

@@ -8,4 +8,8 @@ class ExampleService {
             HelloWorldResponse("Hello World")
         }
     }
+
+    fun getThingById(request: ThingByIdRequest): HelloWorldResponse {
+        return HelloWorldResponse("Hello ${request.id}")
+    }
 }

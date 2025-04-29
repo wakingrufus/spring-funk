@@ -7,6 +7,7 @@ import com.github.wakingrufus.funk.htmx.HttpVerb
 import com.github.wakingrufus.funk.htmx.htmx
 import com.github.wakingrufus.funk.htmx.hxPost
 import com.github.wakingrufus.funk.htmx.swap.HxSwapType
+import com.github.wakingrufus.funk.htmx.template.htmxTemplate
 import com.github.wakingrufus.funk.logging.logging
 import com.github.wakingrufus.funk.webmvc.webmvc
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -21,6 +22,14 @@ import org.springframework.web.servlet.function.ServerResponse
 
 const val helloWorldUrl = "/load"
 
+val responseTemplate = htmxTemplate<HelloWorldResponse> {
+    div {
+        span {
+            +it.message
+        }
+    }
+}
+
 class ExampleApplication : SpringFunkApplication {
     private val log = KotlinLogging.logger {}
     override fun dsl(): SpringDslContainer.() -> Unit = {
@@ -33,15 +42,6 @@ class ExampleApplication : SpringFunkApplication {
         }
         htmx {
             page("/index") {
-
-                route(HttpVerb.POST, helloWorldUrl, ExampleService::sayHello) {
-                    div {
-                        span {
-                            +it.message
-                        }
-                    }
-                }
-
                 initialLoad {
                     form {
                         hxPost(helloWorldUrl) {
@@ -61,6 +61,8 @@ class ExampleApplication : SpringFunkApplication {
                         +"Click Me"
                     }
                 }
+                route(HttpVerb.POST, helloWorldUrl, ExampleService::sayHello, responseTemplate)
+                route(HttpVerb.GET,"thing/{id}", ExampleService::getThingById, responseTemplate)
             }
         }
         webmvc {
