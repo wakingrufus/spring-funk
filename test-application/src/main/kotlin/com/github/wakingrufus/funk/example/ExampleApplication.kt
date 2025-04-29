@@ -20,6 +20,7 @@ import org.springframework.boot.logging.LogLevel
 import org.springframework.web.servlet.function.ServerResponse
 
 const val helloWorldUrl = "/load"
+
 class ExampleApplication : SpringFunkApplication {
     private val log = KotlinLogging.logger {}
     override fun dsl(): SpringDslContainer.() -> Unit = {
@@ -34,11 +35,9 @@ class ExampleApplication : SpringFunkApplication {
             page("/index") {
 
                 route(HttpVerb.POST, helloWorldUrl, ExampleService::sayHello) {
-                    {
-                        div {
-                            span {
-                                +it.message
-                            }
+                    div {
+                        span {
+                            +it.message
                         }
                     }
                 }

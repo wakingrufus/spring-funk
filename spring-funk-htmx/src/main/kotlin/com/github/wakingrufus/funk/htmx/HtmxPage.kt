@@ -4,6 +4,7 @@ import com.github.wakingrufus.funk.core.SpringDslMarker
 import com.github.wakingrufus.funk.htmx.route.HxRoute
 import com.github.wakingrufus.funk.htmx.route.noParam
 import com.github.wakingrufus.funk.htmx.route.withParam
+import com.github.wakingrufus.funk.htmx.template.HtmxTemplate
 import kotlinx.html.BODY
 import kotlinx.html.TagConsumer
 import kotlinx.html.body
@@ -16,7 +17,6 @@ import org.springframework.beans.factory.BeanFactory
 import org.springframework.http.MediaType
 import org.springframework.web.servlet.function.RouterFunctionDsl
 import org.springframework.web.servlet.function.ServerResponse
-import org.w3c.dom.Document
 
 class HtmxPage(val path: String) {
     var initialLoad: BODY.() -> Unit = {}
@@ -42,15 +42,25 @@ class HtmxPage(val path: String) {
     inline fun <reified CONTROLLER : Any, RESP : Any> get(
         path: String,
         noinline binding: CONTROLLER.() -> RESP,
-        noinline renderer: (RESP) -> TagConsumer<Document>.() -> Document
+        renderer: HtmxTemplate<RESP>
     ): HxRoute {
-        return noParam(RouterFunctionDsl::GET,
+        return noParam(
+            RouterFunctionDsl::GET,
             path = path,
             controllerClass = CONTROLLER::class.java,
             binding = binding,
             renderer = renderer
-            )
+        )
             .also { addRoute(it) }
+    }
+
+    @SpringDslMarker
+    inline fun <reified CONTROLLER : Any, RESP : Any> get(
+        path: String,
+        noinline binding: CONTROLLER.() -> RESP,
+        crossinline renderer: TagConsumer<*>.(RESP) -> Unit
+    ): HxRoute {
+        return get(path, binding) { appendable, input -> renderer.invoke(appendable, input) }
     }
 
     @SpringDslMarker
@@ -58,8 +68,18 @@ class HtmxPage(val path: String) {
         verb: HttpVerb,
         path: String,
         noinline binding: CONTROLLER.(REQ) -> RESP,
-        noinline renderer: (RESP) -> TagConsumer<Document>.() -> Document
-    ): HxRoute{
+        crossinline renderer: TagConsumer<*>.(RESP) -> Unit
+    ): HxRoute {
+        return route(verb, path, binding) { appendable, input -> renderer.invoke(appendable, input) }
+    }
+
+    @SpringDslMarker
+    inline fun <reified CONTROLLER : Any, reified REQ : Record, RESP : Any> route(
+        verb: HttpVerb,
+        path: String,
+        noinline binding: CONTROLLER.(REQ) -> RESP,
+        renderer: HtmxTemplate<RESP>
+    ): HxRoute {
         return withParam(
             routerFunction = when (verb) {
                 HttpVerb.GET -> RouterFunctionDsl::GET
