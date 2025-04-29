@@ -1,5 +1,6 @@
 package com.github.wakingrufus.funk.htmx
 
+import com.github.wakingrufus.funk.htmx.template.htmxTemplate
 import kotlinx.html.span
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -25,10 +26,8 @@ class HtmxPageTest {
     fun `test no param get`() {
         val htmxPage = HtmxPage("").apply {
             get("", TestController::noParamGet) {
-                {
-                    span {
-                        +it.id.toString()
-                    }
+                span {
+                    +it.id.toString()
                 }
             }
         }
@@ -39,10 +38,8 @@ class HtmxPageTest {
     fun `test get with params`() {
         val htmxPage = HtmxPage("").apply {
             route(HttpVerb.GET, "", TestController::get) {
-                {
-                    span {
-                        +it.id.toString()
-                    }
+                span {
+                    +it.id.toString()
                 }
             }
         }
