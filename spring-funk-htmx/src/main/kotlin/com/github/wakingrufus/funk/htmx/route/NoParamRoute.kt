@@ -1,6 +1,7 @@
 package com.github.wakingrufus.funk.htmx.route
 
 import com.github.wakingrufus.funk.htmx.template.HtmxTemplate
+import com.github.wakingrufus.funk.htmx.template.template
 import kotlinx.html.stream.appendHTML
 import org.springframework.beans.factory.BeanFactory
 import org.springframework.http.MediaType
@@ -30,8 +31,7 @@ class NoParamRoute<CONTROLLER : Any, RESP : Any>(
                 } else {
                     ServerResponse.ok().contentType(MediaType.TEXT_HTML)
                         .body(buildString {
-                            appendHTML(false)
-                                .apply { renderer.render(this, resp) }
+                            appendHTML(false).template(renderer, resp)
                         })
                 }
             }
