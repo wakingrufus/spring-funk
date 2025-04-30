@@ -9,15 +9,13 @@ import com.github.wakingrufus.funk.htmx.trigger.HxTriggerDsl
 import kotlinx.html.HTMLTag
 
 @SpringDslMarker
-class TriggerDsl(
-    val verb: HttpVerb,
-    val path: String,
-    var target: String? = null,
-    var hxPushUrl: Boolean? = null,
-    var hxSelect: String? = null
-) {
+class TriggerDsl(val verb: HttpVerb, val path: String) {
     private var swap: HxSwap? = null
     private var trigger: HxTrigger? = null
+    private var hxParams: String? = null
+    private var target: String? = null
+    private var hxPushUrl: Boolean? = null
+    private var hxSelect: String? = null
 
     @SpringDslMarker
     fun swap(type: HxSwapType, dsl: HxSwapDsl.() -> Unit = {}) {
@@ -29,6 +27,25 @@ class TriggerDsl(
         trigger = HxTriggerDsl().apply(dsl)()
     }
 
+    @SpringDslMarker
+    fun allParams() {
+        hxParams = "*"
+    }
+
+    @SpringDslMarker
+    fun noParams() {
+        hxParams = "none"
+    }
+
+    @SpringDslMarker
+    fun excludeParams(vararg params: String) {
+        hxParams = "not " + params.joinToString(",")
+    }
+
+    @SpringDslMarker
+    fun includeParams(vararg params: String) {
+        hxParams = params.joinToString(",")
+    }
 
     operator fun invoke(element: HTMLTag) {
         element.apply {
@@ -38,6 +55,7 @@ class TriggerDsl(
             target?.let { hxTarget(it) }
             hxPushUrl?.let { hxPushUrl(it) }
             hxSelect?.let { hxSelect(it) }
+            hxParams?.let { hxParams(it) }
         }
     }
 }
