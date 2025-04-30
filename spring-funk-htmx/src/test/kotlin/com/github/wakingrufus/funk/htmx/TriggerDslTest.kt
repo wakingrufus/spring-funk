@@ -63,4 +63,16 @@ class TriggerDslTest {
         }
         assertThat(actual).isEqualTo("""<div hx-get="/" hx-params="not 1,2"></div>""")
     }
+
+    @Test
+    fun `test target`() {
+        val actual = buildString {
+            appendHTML(false).div {
+                TriggerDsl(HttpVerb.GET, "/").apply {
+                    target = "body"
+                }(this)
+            }
+        }
+        assertThat(actual).isEqualTo("""<div hx-get="/" hx-target="body"></div>""")
+    }
 }

@@ -13,9 +13,15 @@ class TriggerDsl(val verb: HttpVerb, val path: String) {
     private var swap: HxSwap? = null
     private var trigger: HxTrigger? = null
     private var hxParams: String? = null
-    private var target: String? = null
-    private var hxPushUrl: Boolean? = null
-    private var hxSelect: String? = null
+
+    @SpringDslMarker
+    var target: String? = null
+
+    @SpringDslMarker
+    var hxPushUrl: Boolean? = null
+
+    @SpringDslMarker
+    var hxSelect: String? = null
 
     @SpringDslMarker
     fun swap(type: HxSwapType, dsl: HxSwapDsl.() -> Unit = {}) {
