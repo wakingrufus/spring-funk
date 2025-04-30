@@ -11,6 +11,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.web.reactive.function.BodyInserters
 import java.nio.charset.StandardCharsets
+import java.util.UUID
 
 
 @SpringBootTest(
@@ -58,5 +59,13 @@ class ExampleApplicationTest {
             formResponseJson.returnResult(String::class.java).responseBodyContent?.toString(StandardCharsets.UTF_8)
         log.info { responseString }
         assertThat(responseString).isEqualTo("""{"message":"Hello bob"}""")
+
+        val pathParamResponse = client.get()
+            .uri("/thing/${UUID.randomUUID()}")
+            .accept(MediaType.TEXT_HTML)
+            .exchange()
+        log.info {
+            pathParamResponse.returnResult(String::class.java).responseBodyContent?.toString(StandardCharsets.UTF_8)
+        }
     }
 }
