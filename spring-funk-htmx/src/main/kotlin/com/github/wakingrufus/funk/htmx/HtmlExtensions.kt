@@ -16,6 +16,11 @@ fun HTMLTag.hxSelect(selector: String) {
 }
 
 @SpringDslMarker
+fun HTMLTag.hxParams(params: String) {
+    attributes["hx-params"] = params
+}
+
+@SpringDslMarker
 fun HTMLTag.hxPushUrl(value: Boolean) {
     attributes["hx-push-url"] = value.toString()
 }
