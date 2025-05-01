@@ -16,7 +16,7 @@ include(":spring-funk-htmx")
 dependencyResolutionManagement {
     versionCatalogs {
         create("spring") {
-            version("spring", "6.1.11")
+            version("spring", "6.2.6")
             version("boot", "3.3.1")
             version("cloud", "4.1.2")
             library("context", "org.springframework", "spring-context").versionRef("spring")
