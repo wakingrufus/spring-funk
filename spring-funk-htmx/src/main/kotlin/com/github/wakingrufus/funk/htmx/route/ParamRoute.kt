@@ -8,6 +8,7 @@ import kotlinx.html.stream.appendHTML
 import org.springframework.beans.factory.BeanFactory
 import org.springframework.beans.factory.getBean
 import org.springframework.http.MediaType
+import org.springframework.util.MultiValueMap
 import org.springframework.web.servlet.function.RouterFunctionDsl
 import org.springframework.web.servlet.function.ServerRequest
 import org.springframework.web.servlet.function.ServerResponse
@@ -28,12 +29,14 @@ class ParamRoute<CONTROLLER : Any, REQ : Record, RESP : Any>(
                 val contentType = request.headers().contentTypeOrNull()
                 val req = if (MediaType.APPLICATION_JSON.isCompatibleWith(contentType)) {
                     request.body(requestClass)
-                } else if (MediaType.APPLICATION_FORM_URLENCODED.isCompatibleWith(contentType)) {
-                    beanFactory.getBean<ObjectMapper>()
-                        .convertValue(request.params().toSingleValueMap(), requestClass)
                 } else {
-                    beanFactory.getBean<ObjectMapper>()
-                        .convertValue(request.pathVariables(), requestClass)
+                    beanFactory.getBean<ObjectMapper>().convertValue(
+                        MultiValueMap.fromMultiValue(
+                            request.params()
+                                .plus(MultiValueMap.fromSingleValue(request.pathVariables()))
+                        ).toSingleValueMap(),
+                        requestClass
+                    )
                 }
                 val resp = beanFactory.getBean(controllerClass).binding(req)
 

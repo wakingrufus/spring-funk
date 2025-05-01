@@ -16,6 +16,7 @@ dependencies {
 
     testImplementation(project(":spring-funk-test"))
     testImplementation(spring.boot.test)
+    testImplementation(spring.test)
     testImplementation(libs.oshai)
     testImplementation(libs.assertj)
     testImplementation(spring.boot.jetty)
