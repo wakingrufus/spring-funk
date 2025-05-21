@@ -7,8 +7,11 @@ import org.springframework.boot.test.mock.web.SpringBootMockServletContext
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.support.GenericApplicationContext
 import org.springframework.core.Ordered
+import org.springframework.core.env.get
 import org.springframework.mock.env.MockEnvironment
+import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.web.context.support.GenericWebApplicationContext
+import java.time.Duration
 
 /**
  * useful for integration testing DSL enabled initializers
@@ -82,4 +85,12 @@ fun testDslApplication(
     test: TestSpringFunkApplication.() -> Unit
 ) {
     TestSpringFunkApplication(initializers.toList()).apply(test).run()
+}
+
+@SpringDslMarker
+fun GenericApplicationContext.testClient(): WebTestClient {
+    return WebTestClient.bindToServer()
+        .baseUrl("http://localhost:${environment["local.server.port"]}")
+        .responseTimeout(Duration.ofMinutes(10)) // useful for debug
+        .build()
 }

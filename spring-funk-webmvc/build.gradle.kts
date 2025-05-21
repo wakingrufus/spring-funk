@@ -15,6 +15,8 @@ dependencies {
     }
     implementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
     compileOnly("com.fasterxml.jackson.core:jackson-databind:2.17.1")
+    compileOnly(libs.spring.security.web)
+    compileOnly(libs.spring.security.config)
 
     testImplementation(project(":spring-funk-test"))
     testImplementation(spring.boot.jetty)
@@ -24,6 +26,8 @@ dependencies {
     testImplementation(libs.oshai)
     testImplementation(libs.assertj)
     testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.1")
+    testImplementation(libs.spring.boot.security)
+    testImplementation("org.springframework.boot:spring-boot-starter-security")
 }
 
 testing {
