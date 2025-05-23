@@ -12,4 +12,5 @@ dependencies {
     implementation(spring.boot.test)
     compileOnly("jakarta.servlet:jakarta.servlet-api:6.0.0")
     api(spring.test)
+    compileOnly(libs.jackson.databind)
 }

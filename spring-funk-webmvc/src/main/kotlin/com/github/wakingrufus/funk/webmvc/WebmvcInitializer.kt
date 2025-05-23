@@ -24,8 +24,6 @@ import java.util.function.Supplier
 
 
 class WebmvcInitializer : ApplicationContextInitializer<GenericApplicationContext> {
-    private val log = KotlinLogging.logger {}
-
     override fun initialize(context: GenericApplicationContext) {
         val binder = Binder.get(context.environment)
         val webProperties = binder.bindOrCreate("spring.web", WebProperties::class.java)

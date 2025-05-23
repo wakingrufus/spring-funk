@@ -1,44 +1,29 @@
 package com.github.wakingrufus.funk.htmx.route
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.wakingrufus.funk.htmx.template.HtmxTemplate
 import com.github.wakingrufus.funk.htmx.template.template
-import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.html.stream.appendHTML
 import org.springframework.beans.factory.BeanFactory
-import org.springframework.beans.factory.getBean
 import org.springframework.http.MediaType
-import org.springframework.util.MultiValueMap
 import org.springframework.web.servlet.function.RouterFunctionDsl
 import org.springframework.web.servlet.function.ServerRequest
 import org.springframework.web.servlet.function.ServerResponse
 import org.springframework.web.servlet.function.contentTypeOrNull
+import org.springframework.web.servlet.function.principalOrNull
+import java.security.Principal
 
-class ParamRoute<CONTROLLER : Any, REQ : Record, RESP : Any>(
+class AuthRoute<CONTROLLER : Any, USER : Principal, RESP : Any>(
     val routerFunction: RouterFunctionDsl.(String, (ServerRequest) -> ServerResponse) -> Unit,
     val path: String,
-    private val requestClass: Class<REQ>,
     private val controllerClass: Class<CONTROLLER>,
-    val binding: CONTROLLER.(REQ) -> RESP,
+    val binding: CONTROLLER.(USER?) -> RESP,
     val renderer: HtmxTemplate<RESP>
 ) : HxRoute {
     override fun registerRoutes(beanFactory: BeanFactory, dsl: RouterFunctionDsl) {
         dsl.apply {
             routerFunction(path) { request ->
                 val contentType = request.headers().contentTypeOrNull()
-                val req = if (MediaType.APPLICATION_JSON.isCompatibleWith(contentType)) {
-                    request.body(requestClass)
-                } else {
-                    beanFactory.getBean<ObjectMapper>().convertValue(
-                        MultiValueMap.fromMultiValue(
-                            request.params()
-                                .plus(MultiValueMap.fromSingleValue(request.pathVariables()))
-                        ).toSingleValueMap(),
-                        requestClass
-                    )
-                }
-                val resp = beanFactory.getBean(controllerClass).binding(req)
-
+                val resp = beanFactory.getBean(controllerClass).binding(request.principalOrNull() as USER?)
                 val acceptedType = request.headers().accept()
                 if (MediaType.APPLICATION_JSON.isCompatibleWith(contentType) && acceptedType.any {
                         MediaType.APPLICATION_JSON.isCompatibleWith(it)
