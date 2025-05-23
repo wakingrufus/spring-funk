@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.getBeanProvider
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory
+import org.springframework.web.servlet.function.ServerResponse
 
 class WebmvcInitializerTest {
     @Test
@@ -16,10 +17,17 @@ class WebmvcInitializerTest {
                     enableWebMvc {
                         jetty()
                     }
+                    routes {
+                        route {
+                            GET("/index") {
+                                ServerResponse.ok().build()
+                            }
+                        }
+                    }
                 }
             }
             environment {
-
+                setProperty("server.port", "0")
             }
             test {
                 val factory = getBeanProvider<JettyServletWebServerFactory>().first()
@@ -27,6 +35,9 @@ class WebmvcInitializerTest {
                 assertThat(factory.compression!!.enabled).isFalse
                 assertThat(factory.http2!!.isEnabled).isFalse
                 assertThat(factory.ssl).isNull()
+
+                val response = testRestTemplate!!.getForEntity("/index", String::class.java)
+                assertThat(response.statusCode.value()).isEqualTo(200)
             }
         }
     }
@@ -39,10 +50,17 @@ class WebmvcInitializerTest {
                     enableWebMvc {
                         tomcat()
                     }
+                    routes {
+                        route {
+                            GET("/index") {
+                                ServerResponse.ok().build()
+                            }
+                        }
+                    }
                 }
             }
             environment {
-
+                setProperty("server.port", "0")
             }
             test {
                 val factory = getBeanProvider<TomcatServletWebServerFactory>().first()
@@ -50,6 +68,9 @@ class WebmvcInitializerTest {
                 assertThat(factory.compression!!.enabled).isFalse
                 assertThat(factory.http2!!.isEnabled).isFalse
                 assertThat(factory.ssl).isNull()
+
+                val response = testRestTemplate!!.getForEntity("/index", String::class.java)
+                assertThat(response.statusCode.value()).isEqualTo(200)
             }
         }
     }
