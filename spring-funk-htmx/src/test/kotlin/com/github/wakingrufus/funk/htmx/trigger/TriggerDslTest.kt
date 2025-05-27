@@ -1,6 +1,10 @@
-package com.github.wakingrufus.funk.htmx
+package com.github.wakingrufus.funk.htmx.trigger
 
+import com.github.wakingrufus.funk.htmx.HttpVerb
+import com.github.wakingrufus.funk.htmx.TriggerDsl
+import com.github.wakingrufus.funk.htmx.swap.HxSwapType
 import kotlinx.html.div
+import kotlinx.html.select
 import kotlinx.html.stream.appendHTML
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -74,5 +78,41 @@ class TriggerDslTest {
             }
         }
         assertThat(actual).isEqualTo("""<div hx-get="/" hx-target="body"></div>""")
+    }
+
+    @Test
+    fun `test push url`() {
+        val actual = buildString {
+            appendHTML(false).div {
+                TriggerDsl(HttpVerb.GET, "/").apply {
+                    hxPushUrl = true
+                }(this)
+            }
+        }
+        assertThat(actual).isEqualTo("""<div hx-get="/" hx-push-url="true"></div>""")
+    }
+
+    @Test
+    fun `test swap`() {
+        val actual = buildString {
+            appendHTML(false).div {
+                TriggerDsl(HttpVerb.GET, "/").apply {
+                    swap(HxSwapType.OuterHtml)
+                }(this)
+            }
+        }
+        assertThat(actual).isEqualTo("""<div hx-get="/" hx-swap="outerHTML"></div>""")
+    }
+
+    @Test
+    fun `test select`() {
+        val actual = buildString {
+            appendHTML(false).div {
+                TriggerDsl(HttpVerb.GET, "/").apply {
+                    hxSelect = "#id"
+                }(this)
+            }
+        }
+        assertThat(actual).isEqualTo("""<div hx-get="/" hx-select="#id"></div>""")
     }
 }
