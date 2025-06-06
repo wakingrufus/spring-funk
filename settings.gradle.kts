@@ -35,7 +35,7 @@ dependencyResolutionManagement {
         }
         create("aws") {
             version("awssdk", "2.25.60")
-            library("netty", "software.amazon.awssdk", "netty-nio-client").versionRef("awssdk")
+            library("crtClient", "software.amazon.awssdk", "aws-crt-client").versionRef("awssdk")
             library("s3", "software.amazon.awssdk", "s3").versionRef("awssdk")
 
         }
