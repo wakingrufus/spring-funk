@@ -35,7 +35,7 @@ class HtmxPageTest {
 
     @Test
     fun `test no param get`() {
-        val htmxPage = HtmxPage("").apply {
+        val htmxPage = HtmxDsl().apply {
             get("", TestController::noParamGet) {
                 span {
                     +it.id.toString()
@@ -47,7 +47,7 @@ class HtmxPageTest {
 
     @Test
     fun `test get with params`() {
-        val htmxPage = HtmxPage("").apply {
+        val htmxPage = HtmxDsl().apply {
             route(HttpVerb.GET, "", TestController::get) {
                 span {
                     +it.id.toString()
@@ -59,7 +59,7 @@ class HtmxPageTest {
 
     @Test
     fun `test auth`() {
-        val htmxPage = HtmxPage("").apply {
+        val htmxPage = HtmxDsl().apply {
             get("", TestController::auth) {
                 span {
                     +it.name
@@ -71,7 +71,7 @@ class HtmxPageTest {
 
     @Test
     fun `test auth and param`() {
-        val htmxPage = HtmxPage("").apply {
+        val htmxPage = HtmxDsl().apply {
             route(HttpVerb.GET, "", TestController::authAndParam) {
                 span {
                     +it.name
