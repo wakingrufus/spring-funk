@@ -88,10 +88,6 @@ val listTemplate = htmxTemplate<List<String>> {
 }
 ```
 
-### Initial Load
-
-
-
 ### HTMX Interaction
 
 This library provides extensions on the HTML DSL in order to declare HTMX interaction.
@@ -120,6 +116,8 @@ Routes are server-side handers for handling HTMX interactions. They consist of 4
 2. route: the url path
 3. handler: a function reference to call. This method must take a single parameter. The incoming request from HTMX will be deserialized into this parameter, then passed to the function.
 4. renderer: a template for rendering the result of the handler call in HTMX. renderers can be templates, or defined inline.
+
+Each route can be invoked via an HTMX trigger, which will result in the renderer being invoked, and HTML returned. However, these routes will also support returning the JSON of the data object which would be passed to the template via the "application/json" accept header.
 
 #### Example route (inline)
 ```kotlin
