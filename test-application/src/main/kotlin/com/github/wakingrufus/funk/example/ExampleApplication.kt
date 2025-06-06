@@ -42,28 +42,27 @@ class ExampleApplication : SpringFunkApplication {
         }
         htmx {
             page("/index") {
-                initialLoad {
-                    form {
-                        hxPost(helloWorldUrl) {
-                            swap(HxSwapType.OuterHtml) {
-                            }
-                        }
-                        textInput(name = "name") {
-                        }
-                        button(classes = "btn primary") {
-                            +"Submit"
+                form {
+                    hxPost(helloWorldUrl) {
+                        swap(HxSwapType.OuterHtml) {
                         }
                     }
-                    button {
-                        hxPost(helloWorldUrl) {
-                            swap(HxSwapType.OuterHtml)
-                        }
-                        +"Click Me"
+                    textInput(name = "name") {
+                    }
+                    button(classes = "btn primary") {
+                        +"Submit"
                     }
                 }
-                route(HttpVerb.POST, helloWorldUrl, ExampleService::sayHello, responseTemplate)
-                route(HttpVerb.GET,"thing/{id}", ExampleService::getThingById, responseTemplate)
+                button {
+                    hxPost(helloWorldUrl) {
+                        swap(HxSwapType.OuterHtml)
+                    }
+                    +"Click Me"
+                }
             }
+            route(HttpVerb.POST, helloWorldUrl, ExampleService::sayHello, responseTemplate)
+            route(HttpVerb.GET, "thing/{id}", ExampleService::getThingById, responseTemplate)
+
         }
         webmvc {
             enableWebMvc {

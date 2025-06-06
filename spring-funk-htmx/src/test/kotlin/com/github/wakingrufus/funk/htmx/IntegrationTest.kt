@@ -37,29 +37,25 @@ internal class IntegrationTest {
                 }
                 htmx {
                     page("/index") {
-                        initialLoad {
-                            div {
-
-                            }
+                        div {
                         }
-
-                        get("/list", Controller::getList) {
-                            it.forEach {
-                                li { +it }
-                            }
+                    }
+                    get("/list", Controller::getList) {
+                        it.forEach {
+                            li { +it }
                         }
+                    }
 
-                        route(HttpVerb.GET, "/hello/{name}", Controller::hello) {
-                            div { +it }
-                        }
+                    route(HttpVerb.GET, "/hello/{name}", Controller::hello) {
+                        div { +it }
+                    }
 
-                        route(HttpVerb.GET, "/helloauth/{name}", Controller::sayHelloWithAuth) {
-                            div { +it }
-                        }
+                    route(HttpVerb.GET, "/helloauth/{name}", Controller::sayHelloWithAuth) {
+                        div { +it }
+                    }
 
-                        get("/helloauth", Controller::sayHelloWithAuthOnly) {
-                            div { +it }
-                        }
+                    get("/helloauth", Controller::sayHelloWithAuthOnly) {
+                        div { +it }
                     }
                 }
             }

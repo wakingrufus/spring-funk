@@ -8,13 +8,11 @@ import org.springframework.web.servlet.function.router
 
 class HtmxInitializer : ApplicationContextInitializer<GenericApplicationContext> {
     override fun initialize(applicationContext: GenericApplicationContext) {
-        applicationContext.getDsl<HtmxDsl>()?.pages?.forEach { page ->
-            val routesForPage = router {
-                page.registerRoutes(applicationContext, this)
-            }
-            applicationContext.registerBean(page.path.replace("/", "")) {
-                routesForPage
-            }
+        val routesForPage = router {
+            applicationContext.getDsl<HtmxDsl>()?.registerRoutes(applicationContext, this)
+        }
+        applicationContext.registerBean("funkHtmx") {
+            routesForPage
         }
     }
 }
