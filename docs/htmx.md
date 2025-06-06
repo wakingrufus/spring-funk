@@ -47,6 +47,19 @@ class TestKotlinApplication : SpringFunkApplication {
 }
 ```
 
+You must declare the "landing page" for each page, which is the initial content to show on load. Use the HTML DSL to define that view.
+
+```kotlin
+page("/index") {
+    div {
+        span { +"Welcome to the Page" }
+        button {
+            +"Go"
+        }
+    }
+}
+```
+
 ### Templates
 Templates can be declared which define how a given binding response should be rendered to htmx.
 
@@ -77,20 +90,7 @@ val listTemplate = htmxTemplate<List<String>> {
 
 ### Initial Load
 
-You must declare the "landing page" for each page, which is the initial content to show on load. The `initialLoad` function lets you do this, which exposes the HTML DSL to define that view.
 
-```kotlin
-page("/index") {
-    initialLoad {
-        div {
-            span { +"Welcome to the Page" }
-            button {
-                +"Go"
-            }
-        }
-    }
-}
-```
 
 ### HTMX Interaction
 
@@ -98,15 +98,13 @@ This library provides extensions on the HTML DSL in order to declare HTMX intera
 
 ```kotlin
 page("/index") {
-    initialLoad {
-        div {
-            span { +"Welcome to the Page" }
-            button {
-                hxGet("/start") {
-                    swap(HxSwapType.OuterHtml)
-                }
-                +"Go"
+    div {
+        span { +"Welcome to the Page" }
+        button {
+            hxGet("/start") {
+                swap(HxSwapType.OuterHtml)
             }
+            +"Go"
         }
     }
 }
@@ -151,22 +149,18 @@ GET requests may have a parameter or no parameter.
 
 ##### GET requests with no parameter
 ```kotlin
-page("/index") {
-    get("things", TestController::getAll) {
-        span {
-            +it.id.toString()
-        }
+get("things", TestController::getAll) {
+    span {
+        +it.id.toString()
     }
 }
 ```
 
 ##### GET requests with a parameter
 ```kotlin
-page("/index") {
-    route(HttpVerb.GET, "thing/1", TestController::get) {
-        span {
-            +it.id.toString() 
-        }
+route(HttpVerb.GET, "thing/1", TestController::get) {
+    span {
+        +it.id.toString() 
     }
 }
 ```
