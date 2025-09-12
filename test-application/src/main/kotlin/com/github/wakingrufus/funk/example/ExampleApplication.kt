@@ -5,11 +5,11 @@ import com.github.wakingrufus.funk.beans.beans
 import com.github.wakingrufus.funk.core.SpringDslContainer
 import com.github.wakingrufus.funk.htmx.HttpVerb
 import com.github.wakingrufus.funk.htmx.htmx
-import com.github.wakingrufus.funk.htmx.hxPost
-import com.github.wakingrufus.funk.htmx.swap.HxSwapType
-import com.github.wakingrufus.funk.htmx.template.htmxTemplate
 import com.github.wakingrufus.funk.logging.logging
 import com.github.wakingrufus.funk.webmvc.webmvc
+import com.github.wakingrufus.htmx.hxPost
+import com.github.wakingrufus.htmx.swap.HxSwapType
+import com.github.wakingrufus.htmx.template.htmxTemplate
 import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.html.button
 import kotlinx.html.div
@@ -44,7 +44,8 @@ class ExampleApplication : SpringFunkApplication {
             page("/index") {
                 form {
                     hxPost(helloWorldUrl) {
-                        swap(HxSwapType.OuterHtml) {
+                        hxSwap {
+                            style(HxSwapType.OuterHtml)
                         }
                     }
                     textInput(name = "name") {
@@ -55,7 +56,9 @@ class ExampleApplication : SpringFunkApplication {
                 }
                 button {
                     hxPost(helloWorldUrl) {
-                        swap(HxSwapType.OuterHtml)
+                        hxSwap {
+                            style(HxSwapType.OuterHtml)
+                        }
                     }
                     +"Click Me"
                 }

@@ -1,7 +1,7 @@
 import org.jreleaser.model.Active
 
 plugins {
-    kotlin("jvm") version ("2.0.0") apply (false)
+    kotlin("jvm") version ("2.2.0") apply (false)
     id("jacoco-report-aggregation")
     id("org.jreleaser") version ("1.13.1")
 }

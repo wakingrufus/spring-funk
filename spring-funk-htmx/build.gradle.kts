@@ -11,7 +11,7 @@ dependencies {
     implementation(libs.jackson.databind)
     implementation(libs.jackson.datatype.jdk8)
 
-    api("org.jetbrains.kotlinx:kotlinx-html-jvm:0.12.0")
+    api("io.github.wakingrufus:khtmx-dsl-jvm:0.+")
     api("org.jetbrains.kotlin-wrappers:kotlin-css-jvm:2025.3.20")
 
     testImplementation(project(":spring-funk-test"))

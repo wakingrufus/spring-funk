@@ -1,7 +1,7 @@
 package com.github.wakingrufus.funk.htmx.route
 
-import com.github.wakingrufus.funk.htmx.template.HtmxTemplate
-import com.github.wakingrufus.funk.htmx.template.template
+import com.github.wakingrufus.htmx.template.HtmxTemplate
+import com.github.wakingrufus.htmx.template.template
 import kotlinx.html.stream.appendHTML
 import org.springframework.beans.factory.BeanFactory
 import org.springframework.http.MediaType
