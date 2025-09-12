@@ -1,7 +1,7 @@
 package com.github.wakingrufus.funk.htmx.route
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.wakingrufus.funk.htmx.template.htmxTemplate
+import com.github.wakingrufus.htmx.template.htmxTemplate
 import kotlinx.html.div
 import kotlinx.html.span
 import org.assertj.core.api.Assertions.assertThat

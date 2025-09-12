@@ -1,6 +1,7 @@
 package com.github.wakingrufus.funk.htmx
 
-import com.github.wakingrufus.funk.htmx.swap.HxSwapType
+import com.github.wakingrufus.htmx.hxPost
+import com.github.wakingrufus.htmx.swap.HxSwapType
 import kotlinx.html.body
 import kotlinx.html.button
 import kotlinx.html.div
@@ -27,8 +28,10 @@ class HtmxIntegrationTest {
             body {
                 div { }
                 button {
-                    hxPost("/load"){
-                        swap(HxSwapType.OuterHtml)
+                    hxPost("/load") {
+                        hxSwap {
+                            style(HxSwapType.OuterHtml)
+                        }
                     }
                     +"Click Me"
                 }

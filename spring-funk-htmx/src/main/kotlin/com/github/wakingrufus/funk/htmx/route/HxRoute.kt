@@ -1,6 +1,6 @@
 package com.github.wakingrufus.funk.htmx.route
 
-import com.github.wakingrufus.funk.htmx.template.HtmxTemplate
+import com.github.wakingrufus.htmx.template.HtmxTemplate
 import org.springframework.beans.factory.BeanFactory
 import org.springframework.web.servlet.function.RouterFunctionDsl
 import org.springframework.web.servlet.function.ServerRequest

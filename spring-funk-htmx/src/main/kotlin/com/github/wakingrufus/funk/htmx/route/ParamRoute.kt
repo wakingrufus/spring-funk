@@ -1,9 +1,8 @@
 package com.github.wakingrufus.funk.htmx.route
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.wakingrufus.funk.htmx.template.HtmxTemplate
-import com.github.wakingrufus.funk.htmx.template.template
-import io.github.oshai.kotlinlogging.KotlinLogging
+import com.github.wakingrufus.htmx.template.HtmxTemplate
+import com.github.wakingrufus.htmx.template.template
 import kotlinx.html.stream.appendHTML
 import org.springframework.beans.factory.BeanFactory
 import org.springframework.beans.factory.getBean

@@ -8,7 +8,7 @@ import com.github.wakingrufus.funk.htmx.route.noParam
 import com.github.wakingrufus.funk.htmx.route.withAuth
 import com.github.wakingrufus.funk.htmx.route.withParam
 import com.github.wakingrufus.funk.htmx.route.withParamAndAuth
-import com.github.wakingrufus.funk.htmx.template.HtmxTemplate
+import com.github.wakingrufus.htmx.template.HtmxTemplate
 import kotlinx.html.BODY
 import kotlinx.html.TagConsumer
 import kotlinx.html.body
