@@ -8,7 +8,7 @@ parent: Built-in DSLs
 
 # HTMX DSL
 
-This DSL allows you to seamlessly integrate [HTMX](https://htmx.org) with the Kotlin HTML DSL.
+This DSL allows you to seamlessly integrate [KHTMX](https://github.com/wakingrufus/khtmx) with a Spring Funk WebMvc Application.
 
 ## Usage
 
@@ -60,33 +60,7 @@ page("/index") {
 }
 ```
 
-### Templates
-Templates can be declared which define how a given binding response should be rendered to htmx.
-
-```kotlin
-val myTemplate = htmxTemplate<ResponseDataClass> {
-    div {
-        span {
-            +it.name
-        }
-    }
-}
-```
-
-Templates can be composed.
-
-```kotlin
-val itemTemplate = htmxTemplate<String> {
-    li { +it }
-}
-val listTemplate = htmxTemplate<List<String>> {
-    ul {
-        it.forEach {
-            template(itemTemplate, it)
-        }
-    }
-}
-```
+See the [KHTMX DSL Documentation](https://wakingrufus.github.io/khtmx/dsl.html) for more information on authoring htmx.
 
 ### HTMX Interaction
 
