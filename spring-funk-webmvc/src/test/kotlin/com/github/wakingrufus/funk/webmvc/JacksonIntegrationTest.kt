@@ -7,9 +7,10 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.boot.test.web.client.getForEntity
+import org.springframework.boot.web.server.test.client.TestRestTemplate
+import org.springframework.boot.web.server.test.client.getForEntity
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import org.springframework.web.servlet.function.ServerResponse
 import java.net.URI
 
@@ -33,20 +34,17 @@ internal class JacksonIntegrationTest {
 }
 
 internal data class Dto(val property: String)
+
+@EnableWebMvc
 internal class JacksonFunkApplication : SpringFunkApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
         webmvc {
-            enableWebMvc {
-                jetty()
-            }
             converters {
                 jackson()
             }
-            routes {
-                route {
-                    GET("/dsl") {
-                        ServerResponse.ok().body(Dto("Hello World"))
-                    }
+            router {
+                GET("/dsl") {
+                    ServerResponse.ok().body(Dto("Hello World"))
                 }
             }
         }

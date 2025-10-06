@@ -14,7 +14,7 @@ class BeansDslTest {
         testDslApplication(BeanDslInitializer()) {
             application {
                 beans {
-                    bean<String>("testa") { "1" }
+                    registerBean<String>("testa") { "1" }
                 }
             }
             environment {

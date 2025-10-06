@@ -6,6 +6,6 @@ import org.springframework.context.support.GenericApplicationContext
 
 class BeanDslInitializer : ApplicationContextInitializer<GenericApplicationContext> {
     override fun initialize(applicationContext: GenericApplicationContext) {
-        applicationContext.getDsl<BeansDsl>()?.beansDsl?.initialize(applicationContext)
+        applicationContext.getDsl<BeansDsl>()?.beansDsl?.run { applicationContext.register(this) }
     }
 }

@@ -1,11 +1,24 @@
 package com.github.wakingrufus.funk.webmvc
 
 import com.github.wakingrufus.funk.core.SpringDslMarker
-import org.springframework.boot.autoconfigure.jackson.JacksonProperties
+import org.springframework.beans.factory.BeanRegistrarDsl
+import org.springframework.beans.factory.BeanRegistry
+import org.springframework.core.env.Environment
+import tools.jackson.databind.json.JsonMapper
 
-class WebMvcConverterDsl {
-    internal var converters = mutableListOf<Converter>()
-    internal var jacksonProperties: JacksonProperties? = null
+class WebMvcConverterDsl(converterInit: WebMvcConverterDsl.() -> Unit) : BeanRegistrarDsl({}) {
+    var converters = mutableListOf<Converter>()
+
+    init {
+        converterInit()
+    }
+
+    override fun register(registry: BeanRegistry, env: Environment) {
+        super.register(registry, env)
+        converters.forEach {
+            it.register().invoke(this)
+        }
+    }
 
     /**
      * Enable [org.springframework.http.converter.StringHttpMessageConverter]
@@ -31,9 +44,8 @@ class WebMvcConverterDsl {
      * (included by default in `spring-boot-starter-webflux`).
      */
     @SpringDslMarker
-    fun jackson(dsl: JacksonProperties.() -> Unit = {}) {
-        converters.add(JACKSON)
-        jacksonProperties = JacksonProperties().apply(dsl)
+    fun jackson(config: JsonMapper.Builder.() -> Unit = {}) {
+        converters.add(JACKSON(config))
     }
 
     /**

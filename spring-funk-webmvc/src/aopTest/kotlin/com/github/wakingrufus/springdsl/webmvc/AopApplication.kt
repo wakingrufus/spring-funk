@@ -20,11 +20,9 @@ open class AopApplication : SpringFunkApplication {
 
     override fun dsl(): SpringDslContainer.() -> Unit = {
         webmvc {
-            routes {
-                route {
-                    GET("dsl"){
-                        ServerResponse.ok().body("dsl")
-                    }
+            router {
+                GET("/dsl") {
+                    ServerResponse.ok().body("dsl")
                 }
             }
         }

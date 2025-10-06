@@ -45,8 +45,8 @@ class SpringRuntimeConfig<T : Any>(
 
     fun update() {
         instance = if (initialInstance != null) {
-            Binder.get(environment).bind<T>(prefix, Bindable.ofInstance(initialInstance))
-                .orElse(initialInstance)
+            Binder.get(environment).bind(prefix, Bindable.ofInstance(initialInstance))
+                .orElseGet { initialInstance }
         } else {
             Binder.get(environment).bindOrCreate(prefix, clazz)
         }

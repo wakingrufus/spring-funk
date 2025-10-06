@@ -5,30 +5,28 @@ import com.github.wakingrufus.funk.beans.beans
 import com.github.wakingrufus.funk.test.testDslApplication
 import com.github.wakingrufus.funk.webmvc.WebmvcInitializer
 import com.github.wakingrufus.funk.webmvc.webmvc
+import com.github.wakingrufus.htmx.HttpVerb
 import kotlinx.html.div
 import kotlinx.html.li
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.http.MediaType
-import org.springframework.http.RequestEntity
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import java.security.Principal
 
 internal class IntegrationTest {
 
     @Test
     fun test() {
-        testDslApplication(HtmxInitializer(), WebmvcInitializer(), BeanDslInitializer()) {
+        testDslApplication(WebmvcInitializer(), BeanDslInitializer(), HtmxInitializer()) {
             environment {
                 setProperty("server.port", "0")
             }
-            webApplication {
+            mockWebApplication {
                 beans {
-                    bean<Controller>()
+                    registerBean<Controller>()
                 }
                 webmvc {
-                    enableWebMvc {
-                        jetty()
-                    }
                     converters {
                         jackson()
                         form()
@@ -60,45 +58,40 @@ internal class IntegrationTest {
                 }
             }
             test {
-                assertThat(testRestTemplate).isNotNull
-                testRestTemplate!!.run {
-                    val indexRequest = RequestEntity.get("/index")
+                assertThat(mockMvc).isNotNull
+                mockMvc!!.run {
+                    val indexRequest = MockMvcRequestBuilders.get("/index")
                         .accept(MediaType.TEXT_HTML)
-                        .build()
-                    val indexResponse = exchange(indexRequest, String::class.java)
+                    val indexResponse = perform(indexRequest).andReturn().response
                     assertThat(indexResponse).isNotNull()
-                    assertThat(indexResponse.statusCode.value()).isEqualTo(200)
+                    assertThat(indexResponse.status).isEqualTo(200)
 
-                    val getRequest = RequestEntity.get("/list")
+                    val getRequest = MockMvcRequestBuilders.get("/list")
                         .accept(MediaType.TEXT_HTML)
-                        .build()
-                    val getResponse = exchange(getRequest, String::class.java)
+                    val getResponse = perform(getRequest).andReturn().response
                     assertThat(getResponse).isNotNull()
-                    assertThat(getResponse.statusCode.value()).isEqualTo(200)
+                    assertThat(getResponse.status).isEqualTo(200)
 
-                    val helloRequest = RequestEntity.get("/hello/John")
+                    val helloRequest = MockMvcRequestBuilders.get("/hello/John")
                         .accept(MediaType.TEXT_HTML)
-                        .build()
-                    val helloResponse = exchange(helloRequest, String::class.java)
+                    val helloResponse = perform(helloRequest).andReturn().response
                     assertThat(helloResponse).isNotNull()
-                    assertThat(helloResponse.statusCode.value()).isEqualTo(200)
-                    assertThat(helloResponse.body).isEqualTo("<div>Hello John</div>")
+                    assertThat(helloResponse.status).isEqualTo(200)
+                    assertThat(helloResponse.contentAsString).isEqualTo("<div>Hello John</div>")
 
-                    val helloWithAuthRequest = RequestEntity.get("/helloauth/John")
+                    val helloWithAuthRequest = MockMvcRequestBuilders.get("/helloauth/John")
                         .accept(MediaType.TEXT_HTML)
-                        .build()
-                    val helloWithAuthResponse = exchange(helloWithAuthRequest, String::class.java)
+                    val helloWithAuthResponse = perform(helloWithAuthRequest).andReturn().response
                     assertThat(helloWithAuthResponse).isNotNull()
-                    assertThat(helloWithAuthResponse.statusCode.value()).isEqualTo(200)
-                    assertThat(helloWithAuthResponse.body).isEqualTo("<div>Hello John</div>")
+                    assertThat(helloWithAuthResponse.status).isEqualTo(200)
+                    assertThat(helloWithAuthResponse.contentAsString).isEqualTo("<div>Hello John</div>")
 
-                    val helloWithAuthOnlyRequest = RequestEntity.get("/helloauth")
+                    val helloWithAuthOnlyRequest = MockMvcRequestBuilders.get("/helloauth")
                         .accept(MediaType.TEXT_HTML)
-                        .build()
-                    val helloWithAuthOnlyResponse = exchange(helloWithAuthOnlyRequest, String::class.java)
+                    val helloWithAuthOnlyResponse = perform(helloWithAuthOnlyRequest).andReturn().response
                     assertThat(helloWithAuthOnlyResponse).isNotNull()
-                    assertThat(helloWithAuthOnlyResponse.statusCode.value()).isEqualTo(200)
-                    assertThat(helloWithAuthOnlyResponse.body).isEqualTo("<div>Hello anonymous</div>")
+                    assertThat(helloWithAuthOnlyResponse.status).isEqualTo(200)
+                    assertThat(helloWithAuthOnlyResponse.contentAsString).isEqualTo("<div>Hello anonymous</div>")
                 }
             }
         }

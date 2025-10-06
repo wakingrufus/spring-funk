@@ -1,7 +1,7 @@
 package com.github.wakingrufus.funk.webmvc
 
-import org.springframework.context.support.GenericApplicationContext
+import org.springframework.beans.factory.BeanRegistrarDsl
 
 interface Converter {
-    fun getInitializer(): GenericApplicationContext.() -> Unit
+    fun register(): BeanRegistrarDsl.() -> Unit
 }

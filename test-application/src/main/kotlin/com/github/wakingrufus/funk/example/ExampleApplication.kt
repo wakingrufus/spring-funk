@@ -3,10 +3,10 @@ package com.github.wakingrufus.funk.example
 import com.github.wakingrufus.funk.base.SpringFunkApplication
 import com.github.wakingrufus.funk.beans.beans
 import com.github.wakingrufus.funk.core.SpringDslContainer
-import com.github.wakingrufus.funk.htmx.HttpVerb
 import com.github.wakingrufus.funk.htmx.htmx
 import com.github.wakingrufus.funk.logging.logging
 import com.github.wakingrufus.funk.webmvc.webmvc
+import com.github.wakingrufus.htmx.HttpVerb
 import com.github.wakingrufus.htmx.hxPost
 import com.github.wakingrufus.htmx.swap.HxSwapType
 import com.github.wakingrufus.htmx.template.htmxTemplate
@@ -38,7 +38,7 @@ class ExampleApplication : SpringFunkApplication {
             level("com.github.wakingrufus", LogLevel.INFO)
         }
         beans {
-            bean<ExampleService>()
+            registerBean<ExampleService>()
         }
         htmx {
             page("/index") {
@@ -68,20 +68,16 @@ class ExampleApplication : SpringFunkApplication {
 
         }
         webmvc {
-            enableWebMvc {
-                jetty()
-            }
+
             converters {
                 jackson()
                 form()
                 string()
             }
-            routes {
-                route {
-                    GET("/dsl") {
-                        log.debug { "handling hello world request" }
-                        ServerResponse.ok().body("Hello World")
-                    }
+            router {
+                GET("/dsl") {
+                    log.debug { "handling hello world request" }
+                    ServerResponse.ok().body("Hello World")
                 }
             }
         }

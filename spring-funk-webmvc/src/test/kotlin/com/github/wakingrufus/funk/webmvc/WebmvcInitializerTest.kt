@@ -4,25 +4,20 @@ import com.github.wakingrufus.funk.test.testDslApplication
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.getBeanProvider
-import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory
+import org.springframework.boot.jetty.servlet.JettyServletWebServerFactory
+import org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory
 import org.springframework.web.servlet.function.ServerResponse
 
 class WebmvcInitializerTest {
     @Test
     fun `test jetty`() {
         testDslApplication(WebmvcInitializer()) {
-            webApplication {
+            mockWebApplication {
                 webmvc {
-                    enableWebMvc {
-                        jetty()
-                    }
-                    routes {
-                        route {
+                    router {
                             GET("/index") {
                                 ServerResponse.ok().build()
                             }
-                        }
                     }
                 }
             }
@@ -45,17 +40,12 @@ class WebmvcInitializerTest {
     @Test
     fun `test tomcat`() {
         testDslApplication(WebmvcInitializer()) {
-            webApplication {
+            mockWebApplication {
                 webmvc {
-                    enableWebMvc {
-                        tomcat()
-                    }
-                    routes {
-                        route {
+                    router {
                             GET("/index") {
                                 ServerResponse.ok().build()
                             }
-                        }
                     }
                 }
             }
