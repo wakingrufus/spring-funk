@@ -1,10 +1,24 @@
 [versions]
-jackson = "2.18.3"
+boot = "4.0.0-M3"
+jackson = "3.0.0-rc10"
 slf4j = "2.0.13"
 
 [libraries]
 slf4j = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 assertj = { module = "org.assertj:assertj-core", version = "3.16.1" }
-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
-jackson-datatype-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
+jackson-databind = { module = "tools.jackson.core:jackson-databind", version.ref = "jackson" }
+#jackson-datatype-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
 oshai = { module = "io.github.oshai:kotlin-logging-jvm", version = "5.1.0" }
+
+spring-boot-core = { module = "org.springframework.boot:spring-boot", version.ref = "boot" }
+spring-boot-autoconfigure = { module = "org.springframework.boot:spring-boot-autoconfigure", version.ref = "boot" }
+spring-boot-jetty = { module = "org.springframework.boot:spring-boot-jetty", version.ref = "boot" }
+spring-boot-restclient = { module = "org.springframework.boot:spring-boot-restclient", version.ref = "boot" }
+spring-boot-tomcat = { module = "org.springframework.boot:spring-boot-tomcat", version.ref = "boot" }
+spring-boot-web-server = { module = "org.springframework.boot:spring-boot-web-server", version.ref = "boot" }
+
+spring-boot-starter-jetty = { module = "org.springframework.boot:spring-boot-starter-jetty", version.ref = "boot" }
+spring-boot-starter-json = { module = "org.springframework.boot:spring-boot-starter-json", version.ref = "boot" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "boot" }
+spring-boot-starter-tomcat = { module = "org.springframework.boot:spring-boot-starter-tomcat", version.ref = "boot" }
+spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "boot" }

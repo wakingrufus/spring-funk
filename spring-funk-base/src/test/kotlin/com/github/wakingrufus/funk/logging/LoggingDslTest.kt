@@ -62,7 +62,7 @@ class LoggingDslTest {
             }
             test {
                 val loggingSystem = LoggingSystem.get(LoggingDslTest::class.java.classLoader)
-                assertThat(loggingSystem.getLoggerConfiguration("ROOT").effectiveLevel)
+                assertThat(loggingSystem.getLoggerConfiguration("ROOT")?.effectiveLevel)
                     .isEqualTo(LogLevel.DEBUG)
             }
         }

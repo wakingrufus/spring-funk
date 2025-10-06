@@ -88,7 +88,7 @@ class S3ClientInitializerTest {
                     }
                 }
                 beans {
-                    bean<MeterRegistry> { SimpleMeterRegistry() }
+                    registerBean<MeterRegistry> { SimpleMeterRegistry() }
                 }
             }
             environment {
@@ -143,7 +143,7 @@ class S3ClientInitializerTest {
                     }
                 }
                 beans {
-                    bean<MeterRegistry> { SimpleMeterRegistry() }
+                    registerBean<MeterRegistry> { SimpleMeterRegistry() }
                 }
             }
             environment {

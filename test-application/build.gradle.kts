@@ -11,12 +11,12 @@ repositories {
 dependencies {
     implementation(project(":spring-funk-webmvc"))
     implementation(project(":spring-funk-htmx"))
-    implementation(spring.boot.jetty)
+    implementation(libs.spring.boot.starter.jetty)
     implementation("ch.qos.logback:logback-classic:1.5.6")
     implementation(libs.oshai)
 
-    testImplementation(spring.boot.test)
-    testImplementation(spring.boot.webflux)
+    testImplementation(libs.spring.boot.starter.test)
+    testImplementation(libs.spring.boot.starter.webflux)
 }
 
 testing {

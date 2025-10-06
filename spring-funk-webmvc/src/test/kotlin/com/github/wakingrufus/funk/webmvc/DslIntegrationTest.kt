@@ -3,18 +3,22 @@ package com.github.wakingrufus.funk.webmvc
 import com.github.wakingrufus.funk.base.SpringFunkApplication
 import com.github.wakingrufus.funk.beans.beans
 import com.github.wakingrufus.funk.core.SpringDslContainer
+import com.github.wakingrufus.funk.logging.logging
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.SpringBootConfiguration
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
+import org.springframework.boot.logging.LogLevel
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.boot.test.web.client.getForEntity
+import org.springframework.boot.web.server.test.client.TestRestTemplate
+import org.springframework.boot.web.server.test.client.getForEntity
 import org.springframework.context.ApplicationContext
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import org.springframework.web.servlet.function.ServerRequest
 import org.springframework.web.servlet.function.ServerResponse
-import org.springframework.web.servlet.function.router
 import java.net.URI
 
 @SpringBootTest(
@@ -42,25 +46,25 @@ internal class DslIntegrationTest {
 
 }
 
-internal class FunkApplication : SpringFunkApplication {
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@EnableWebMvc
+open class FunkApplication : SpringFunkApplication {
     override fun dsl(): SpringDslContainer.() -> Unit = {
         beans {
-            bean<ServiceClass>()
+            registerBean<ServiceClass>()
+        }
+        logging {
+            level("org.springframework.web", LogLevel.DEBUG)
         }
         webmvc {
-            enableWebMvc {
-                jetty()
-            }
-
-            routes {
-                router { serviceClass: ServiceClass -> {
-                        GET("/dsl2", serviceClass::get)
-                    }
-                }
-                router {
-                    helloWorldApi(ref())
+            router { serviceClass: ServiceClass ->
+                {
+                    GET("/dsl", serviceClass::get)
+                    GET("/dsl2", serviceClass::get)
                 }
             }
+            addRouter(dslRoute)
         }
     }
 }
@@ -71,6 +75,8 @@ class ServiceClass {
     }
 }
 
-fun helloWorldApi(serviceClass: ServiceClass) = router {
-    GET("/dsl", serviceClass::get)
+val dslRoute = router { bean: ServiceClass ->
+    {
+        GET("/dsl", bean::get)
+    }
 }

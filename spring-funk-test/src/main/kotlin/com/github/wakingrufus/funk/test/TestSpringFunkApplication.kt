@@ -1,22 +1,22 @@
 package com.github.wakingrufus.funk.test
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.wakingrufus.funk.base.SpringFunkApplication
 import com.github.wakingrufus.funk.core.SpringDslContainer
 import com.github.wakingrufus.funk.core.SpringDslMarker
+import org.springframework.boot.restclient.RestTemplateBuilder
 import org.springframework.boot.test.mock.web.SpringBootMockServletContext
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.boot.web.client.RestTemplateBuilder
-import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext
+import org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext
+import org.springframework.boot.web.server.test.client.TestRestTemplate
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.support.GenericApplicationContext
 import org.springframework.core.Ordered
 import org.springframework.http.MediaType
 import org.springframework.http.converter.StringHttpMessageConverter
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+import org.springframework.http.converter.json.JacksonJsonHttpMessageConverter
 import org.springframework.mock.env.MockEnvironment
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import tools.jackson.databind.json.JsonMapper
 
 /**
  * useful for integration testing DSL enabled initializers
@@ -52,17 +52,17 @@ class TestSpringFunkApplication(
         return application
     }
 
-    @SpringDslMarker
-    fun webApplication(customConfig: SpringDslContainer.() -> Unit): SpringFunkApplication {
-        isWeb = true
-        contextFactory = {
-            ServletWebServerApplicationContext()
-        }
-        application = SpringFunkApplication {
-            customConfig
-        }
-        return application
-    }
+//    @SpringDslMarker
+//    fun webApplication(customConfig: SpringDslContainer.() -> Unit): SpringFunkApplication {
+//        isWeb = true
+//        contextFactory = {
+//            ServletWebServerApplicationContext()
+//        }
+//        application = SpringFunkApplication {
+//            customConfig
+//        }
+//        return application
+//    }
 
     @SpringDslMarker
     fun environment(config: MockEnvironment.() -> Unit) {
@@ -93,10 +93,11 @@ class TestSpringFunkApplication(
             .forEach {
                 it.initialize(context)
             }
+        context.register()
         context.refresh()
         if (isWeb && context is ServletWebServerApplicationContext) {
             if (context.webServer != null) {
-                val jacksonConverter = MappingJackson2HttpMessageConverter(ObjectMapper())
+                val jacksonConverter = JacksonJsonHttpMessageConverter(JsonMapper.shared())
                 jacksonConverter.supportedMediaTypes = listOf(
                     MediaType.APPLICATION_JSON,
                     MediaType.APPLICATION_OCTET_STREAM
@@ -104,7 +105,7 @@ class TestSpringFunkApplication(
                 testRestTemplate = TestRestTemplate(
                     RestTemplateBuilder()
                         .messageConverters(jacksonConverter, StringHttpMessageConverter())
-                        .rootUri("http://localhost:" + context.webServer.port)
+                        .rootUri("http://localhost:" + context.webServer?.port)
                 )
             } else {
                 mockMvc = MockMvcBuilders.webAppContextSetup(context).build()
